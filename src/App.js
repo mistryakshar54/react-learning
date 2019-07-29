@@ -1,21 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ItemListComponent from './RenderProps/Components/ItemListComponent';
-import SummaryComponent from './RenderProps/Components/SummaryComponent';
-import { WithLoader } from "./HOC/withLoader";
-import  Posts  from "./HOC/Posts";
+import LayoutComponent from "./Layout/Layout";
+import { BrowserRouter as Router , Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-        <h1 className="header-label">Render Props Example</h1>
-          <ItemListComponent
-            render = {
-              (cartItems) => <SummaryComponent cartItems={cartItems} />
-            }
-          
-          />
-          <Posts/>
+      <Router>
+          <LayoutComponent/>
+      </Router>
     </div>
   );
 }

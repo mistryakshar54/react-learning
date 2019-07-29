@@ -87,26 +87,37 @@ class ItemListComponent extends Component{
         if(this.state.itemList.length > 0)
         {
             let itemListArr = this.state.itemList;
-            return(
-                <div className="container main-container">
-                    <div className="col-lg-6 item-list-container" >
-                        <h2 className="header-label">Items:<br/></h2>
-                        <ul className="list-group list-group-flush">
-                        {itemListArr.map( (item , index) => {
-                            return(
-                                    <ItemComponent  
-                                    key={'child_'+index}
-                                    addToCart={() => this.addItemToCartHandler(item)}
-                                    removeFromCart = { ()=> this.removeItemFromCartHandler(item)}
-                                    itemData={item} />
-                            );
-                        })}
-                        </ul>
-                    </div>
-                    <div className="col-lg-5 summary-container">
-                        {this.props.render(this.state.cartItems)}
-                    </div>
+            return (
+              <div className="container main-container">
+                <h1 className="header-label">
+                  Render Props Example
+                </h1>
+                <div className="col-lg-6 item-list-container">
+                  <h2 className="header-label">
+                    Items:
+                    <br />
+                  </h2>
+                  <ul className="list-group list-group-flush">
+                    {itemListArr.map((item, index) => {
+                      return (
+                        <ItemComponent
+                          key={"child_" + index}
+                          addToCart={() =>
+                            this.addItemToCartHandler(item)
+                          }
+                          removeFromCart={() =>
+                            this.removeItemFromCartHandler(item)
+                          }
+                          itemData={item}
+                        />
+                      );
+                    })}
+                  </ul>
                 </div>
+                <div className="col-lg-5 summary-container">
+                  {this.props.render(this.state.cartItems)}
+                </div>
+              </div>
             );
         }
         else
