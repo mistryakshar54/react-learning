@@ -18,3 +18,26 @@ body
     font-weight: lighter;
     padding: 2%;
 }
+
+
+.content-header {
+  font-weight: lighter;
+  font-size: 2rem;
+  text-align: center;
+  padding: 2% 0%;
+}
+
+.content-sub-header {
+  font-size: 1.6rem;
+  font-style: bold;
+  text-align: center;
+  padding: 2% 0%;
+}
+
+.center-content {
+  align-content: center;
+}
+
+.table {
+  margin: 2% 0%;
+}
