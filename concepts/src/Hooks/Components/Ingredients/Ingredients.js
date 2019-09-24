@@ -1,17 +1,32 @@
 import React from 'react';
-import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 const IngredientComponent = ( props ) => {
-    return(
-            props.ingredientList.map( (item , index) => {
-                return (
-                  <Card key={index}>
-                    <Card.Title>
-                      {item.title} - {item.amount}
-                    </Card.Title>
-                    <span> X </span>
-                  </Card>
-                );    
-            })
+    return props.ingredientList && props.ingredientList.length > 0 ? (
+      props.ingredientList.map((item, index) => {
+        return (
+          <ul key={index} className="list-group list-group-flush center-items">
+            <li className="list-group-item text-left col-7">
+              <label>
+                {item.title} - $ &nbsp; {item.amount}
+              </label>
+              <FontAwesomeIcon
+                onClick={props.addToCart}
+                style={{
+                  float: "right",
+                  cursor: "pointer",
+                  marginTop: "10px",
+                  padding: "0.5%"
+                }}
+                icon={faTrash}
+              />
+            </li>
+          </ul>
+        );
+      })
+    ) : (
+      <h2 className="content-header">No Ingredients Added!</h2>
     );
 }
 
