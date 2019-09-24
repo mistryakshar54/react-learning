@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import ItemListLayout from "../RenderProps/Components/ItemListLayout";
 import Posts from "../HOC/Posts";
-import IngredientsListComponent from "../Hooks/Components/IngredientsList/IngredientsList";
+import IngredientsLayoutComponent from "../Hooks/IngredientsLayout";
 import ContextLayoutComponent from "../Context/Components/Layout";
 import PostsComponent from "../Thunk-Testing/PostsComponent";
 const LayoutComponent = () => {
@@ -11,7 +11,7 @@ const LayoutComponent = () => {
       <React.Fragment>
         <Route path="/" exact component={ItemListLayout} />
         <Route path="/HOC" exact component={Posts} />
-        <Route path="/Hook" exact component={IngredientsListComponent} />
+        <Route path="/Hook" exact component={IngredientsLayoutComponent} />
         <Route path="/Context" exact component={ContextLayoutComponent} />
         <Route path="/Posts" exact component={PostsComponent} />
       </React.Fragment>

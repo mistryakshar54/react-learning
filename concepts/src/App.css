@@ -38,6 +38,9 @@ body
   align-content: center;
 }
 
+.center-items{
+  align-items: center;
+}
 .table {
   margin: 2% 0%;
 }
