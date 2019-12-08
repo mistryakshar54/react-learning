@@ -7,7 +7,6 @@ const IngredientsLayoutComponent = ( props ) => {
     const [ ingredientsList , setingredientsList ] = useState([]);
     
     const addNewIngredientHandler = ( ingredient ) => {
-        debugger;
         setingredientsList(currentList => [
           ...currentList,
           {
@@ -18,6 +17,7 @@ const IngredientsLayoutComponent = ( props ) => {
     }
 
     const filterResultsHandler = ( filterKey ) => {
+        
         setingredientsList( currentList =>  currentList.filter( item => item.title === filterKey )  );
     }
     return (

@@ -6,6 +6,7 @@ import Posts from "../HOC/Posts";
 import IngredientsLayoutComponent from "../Hooks/IngredientsLayout";
 import ContextLayoutComponent from "../Context/Components/Layout";
 import PostsComponent from "../Thunk-Testing/PostsComponent";
+import CustomVidePlayerComponent from '../CustomVideoPlayer/CustomVidePlayer';
 const LayoutComponent = () => {
     return (
       <React.Fragment>
@@ -14,6 +15,7 @@ const LayoutComponent = () => {
         <Route path="/Hook" exact component={IngredientsLayoutComponent} />
         <Route path="/Context" exact component={ContextLayoutComponent} />
         <Route path="/Posts" exact component={PostsComponent} />
+        <Route path="/VideoPlayer" exact component={CustomVidePlayerComponent} />
       </React.Fragment>
     );
 }
