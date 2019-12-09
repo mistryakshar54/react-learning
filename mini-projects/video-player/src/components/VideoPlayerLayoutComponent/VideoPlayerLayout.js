@@ -16,7 +16,7 @@ class VideoPlayerLayout extends Component{
         return (
           <div>
             <VideoPlayerComponent ref={videoPlayerRef} />
-            <div className='videoControls'>
+            <div className='videoControls showControls'>
               <PlaybackComponent
                 videoRef={videoPlayerRef}
                 isPlayerRunning={this.state.isPlayerRunning}
