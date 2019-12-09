@@ -8,10 +8,11 @@ const PlaybackComponent = ( props )=> {
     const togglePlay = () => {
         if (!videoRef.current.paused) {
           videoRef.current.pause();
+          props.updatePlayerStatus(false);
         } else {
           videoRef.current.play();
+          props.updatePlayerStatus(true);
         }
-        props.updatePlayerStatus(videoRef.current.paused);
     }
     debugger;
     if (props.isPlayerRunning) {
