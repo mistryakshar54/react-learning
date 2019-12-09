@@ -1,0 +1,6 @@
+.videoControls{
+    position: relative;
+    display: flex;
+    bottom: 50px;
+    padding: 2%;
+}

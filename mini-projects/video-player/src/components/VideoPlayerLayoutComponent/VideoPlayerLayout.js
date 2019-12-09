@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import VideoPlayerComponent  from "./VideoPlayerComponent/VideoPlayerComponent";
 import PlaybackComponent from './PlayerControlsComponent/PlaybackComponent/PlaybackComponent';
+import './VideoPlayerLayout.css';
 
 const videoPlayerRef = React.createRef();
 class VideoPlayerLayout extends Component{
@@ -15,11 +16,13 @@ class VideoPlayerLayout extends Component{
         return (
           <div>
             <VideoPlayerComponent ref={videoPlayerRef} />
-            <PlaybackComponent
-              videoRef={videoPlayerRef}
-              isPlayerRunning ={this.state.isPlayerRunning}
-              updatePlayerStatus={this.updateIsPlayerRunning}
-            />
+            <div className='videoControls'>
+              <PlaybackComponent
+                videoRef={videoPlayerRef}
+                isPlayerRunning={this.state.isPlayerRunning}
+                updatePlayerStatus={this.updateIsPlayerRunning}
+              />
+            </div>
           </div>
         );
     }
