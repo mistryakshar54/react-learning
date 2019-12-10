@@ -14,3 +14,10 @@
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0, rgba(0, 0, 0, 0.1) 100%);
     transition: all 1s ease-in-out;
 }
+.videoOverlay{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    bottom: 170px;
+    padding: 2%;
+}
