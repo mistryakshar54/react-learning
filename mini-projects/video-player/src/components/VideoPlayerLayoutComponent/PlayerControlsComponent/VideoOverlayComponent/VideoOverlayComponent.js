@@ -7,10 +7,18 @@ const VideoOverlayComponent = (props) => {
     const {isPlayerRunning} = props;
 
     if( isPlayerRunning){
-        return <FontAwesomeIcon icon={faPause} />
+        return (
+          <div className="overlayInfo">
+            <FontAwesomeIcon icon={faPause} />
+          </div>
+        );
     }
     else{
-        return <FontAwesomeIcon icon={faPlay} />;
+        return (
+          <div className="overlayInfo">
+            <FontAwesomeIcon icon={faPlay} />
+          </div>
+        );
     }
 }
 export default VideoOverlayComponent;

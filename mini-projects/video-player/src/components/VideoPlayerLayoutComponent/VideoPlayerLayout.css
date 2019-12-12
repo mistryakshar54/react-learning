@@ -1,10 +1,18 @@
 .videoControls{
-    position: relative;
+    position: absolute;
     display: flex;
-    bottom: 50px;
-    padding: 2%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2% 0%;
+    width: 100%;
 }
 
+.videoPlayer{
+    width: 640px;
+    height: auto;
+    position: relative;
+}
 .hideControls{
     visibility: hidden;
     transition: all 1s ease-in-out;
@@ -15,20 +23,45 @@
     transition: all 1s ease-in-out;
 }
 .videoOverlay{
-    position: relative;
-    justify-content: center;
-    display: flex;
-    bottom: 170px;
-    padding: 2%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
 }
-/* 
+
 .videoPlayerContainer{
     width: 100%;
 }
 
+.overlayInfo{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.overlayInfo > svg {
+    height: 100%;
+}
+
 .videoPlayerComponent{
-    width: 75%;
     position: relative;
-    overflow: hidden;
-    height: 50%;
-} */
+}
+
+.top-gradient{
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.25) 0, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 0;
+}
+.bottom-gradient{
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 0;
+}
+.controlItems{
+    margin: 0% 2%;
+}
