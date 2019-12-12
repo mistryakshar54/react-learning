@@ -29,10 +29,12 @@ class PlayerControlsComponent extends Component {
           isPlayerRunning={this.state.isPlayerRunning}
         />
         <div className="videoControls showControls">
-          <PlaybackComponent
-            updatePlayerStatus={this.updateIsPlayerRunning}
-            isPlayerRunning={this.state.isPlayerRunning}
-          />
+          <div className="controlItems">
+            <PlaybackComponent
+              updatePlayerStatus={this.updateIsPlayerRunning}
+              isPlayerRunning={this.state.isPlayerRunning}
+            />
+          </div>
         </div>
       </div>
     );
