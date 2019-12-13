@@ -4,9 +4,17 @@ import { faPlay , faPause } from "@fortawesome/free-solid-svg-icons";
 
 const PlaybackComponent = ( props )=> {
     if (props.isPlayerRunning) {
-      return <FontAwesomeIcon icon={faPause} />;
+      return (
+        <div onClick={props.togglePlay}>
+          <FontAwesomeIcon icon={faPause} />
+        </div>
+      );
     } else {
-      return <FontAwesomeIcon icon={faPlay} />;
+      return (
+        <div onClick={props.togglePlay}>
+          <FontAwesomeIcon icon={faPlay} />
+        </div>
+      );
     }
       
 }
