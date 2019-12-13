@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PlaybackComponent from "./PlaybackComponent/PlaybackComponent";
 import VideoOverlayComponent from "./VideoOverlayComponent/VideoOverlayComponent";
 import PlayerIntervalComponent from './PlayerIntervalComponent/PlayerIntervalComponent';
+import { isFulfilled } from "q";
 class PlayerControlsComponent extends Component {
   state = {
     isPlayerRunning: false
@@ -23,11 +24,23 @@ class PlayerControlsComponent extends Component {
       }
     };
     const skipToInterval = ( skipDirection ) => {
-      skipDirection === "forward"
-        ? (videoRef.current.currentTime = videoRef.current.currentTime + 10)
-        : (videoRef.current.currentTime = videoRef.current.currentTime - 10);
-        videoRef.current.play();
-        this.setState({ isPlayerRunning: true });
+      let currentVideoTime = videoRef.current.currentTime;
+      let updatedTime = 0;
+      if(skipDirection === "forward"){
+        updatedTime = currentVideoTime + 10;
+        if (updatedTime >  videoRef.current.duration) {
+          updatedTime = videoRef.current.duration;
+        }
+      }
+      else{
+        updatedTime = currentVideoTime - 10;
+        if (updatedTime < 0) {
+          updatedTime = 0;
+        }
+      }
+      videoRef.current.currentTime = updatedTime;
+      videoRef.current.play();
+      this.setState({ isPlayerRunning: true });
     }
     return (
       <div className="videoOverlay">
