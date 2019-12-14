@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import PlaybackComponent from "./PlaybackComponent/PlaybackComponent";
 import VideoOverlayComponent from "./VideoOverlayComponent/VideoOverlayComponent";
 import PlayerIntervalComponent from './PlayerIntervalComponent/PlayerIntervalComponent';
-import { isFulfilled } from "q";
+import PropTypes from 'prop-types'; // ES6
 class PlayerControlsComponent extends Component {
   state = {
     isPlayerRunning: false
   };
   updateIsPlayerRunning = playerRunning => {
-    console.log("Is player running", playerRunning);
     this.setState({ isPlayerRunning: playerRunning });
   };
   render() {
@@ -66,3 +65,7 @@ class PlayerControlsComponent extends Component {
 }
 
 export default PlayerControlsComponent;
+
+PlayerControlsComponent.propTypes = {
+  videoRef : PropTypes.object
+}

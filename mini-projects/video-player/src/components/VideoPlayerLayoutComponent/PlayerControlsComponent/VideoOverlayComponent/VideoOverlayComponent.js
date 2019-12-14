@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay , faPause } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from 'prop-types'; // ES6
 
 const VideoOverlayComponent = (props) => {
 
@@ -22,3 +23,7 @@ const VideoOverlayComponent = (props) => {
     }
 }
 export default VideoOverlayComponent;
+
+VideoOverlayComponent.propTypes = {
+  isPlayerRunning : PropTypes.bool
+}

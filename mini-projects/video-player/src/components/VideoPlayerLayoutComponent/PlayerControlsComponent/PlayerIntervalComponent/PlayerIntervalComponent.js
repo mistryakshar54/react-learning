@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFastForward, faFastBackward } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from 'prop-types'; // ES6
 
 const PlayerIntervalComponent = ( props )=> {
     
@@ -20,3 +21,7 @@ const PlayerIntervalComponent = ( props )=> {
 }
 
 export default PlayerIntervalComponent;
+
+PlayerIntervalComponent.propTypes = {
+  skipToInterval: PropTypes.func
+};
