@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import PlaybackComponent from "./PlaybackComponent/PlaybackComponent";
 import VideoOverlayComponent from "./VideoOverlayComponent/VideoOverlayComponent";
 import PlayerIntervalComponent from './PlayerIntervalComponent/PlayerIntervalComponent';
+import FullScreenComponent from "./FullscreenComponent/FullScreenComponent";
 import PropTypes from 'prop-types'; // ES6
 class PlayerControlsComponent extends Component {
   state = {
-    isPlayerRunning: false
+    isPlayerRunning: false,
+    isFullscreenModeEnabled: false
   };
   updateIsPlayerRunning = playerRunning => {
     this.setState({ isPlayerRunning: playerRunning });
@@ -41,6 +43,17 @@ class PlayerControlsComponent extends Component {
       videoRef.current.play();
       this.setState({ isPlayerRunning: true });
     }
+
+    const enableFullScreenMode = ( enableFullscreen) => {
+        if(enableFullscreen === true){
+          document.getElementById("videoPlayerComp").requestFullscreen();
+          // videoRef.current.requestFullscreen();
+          this.setState({ isFullscreenModeEnabled : true });
+        }else{
+          document.exitFullscreen();
+          this.setState({ isFullscreenModeEnabled: true });
+        }
+    }
     return (
       <div className="videoOverlay">
         <div onClick={togglePlay}>
@@ -57,6 +70,10 @@ class PlayerControlsComponent extends Component {
               isPlayerRunning={this.state.isPlayerRunning}
             />
             <PlayerIntervalComponent skipToInterval={skipToInterval} />
+            <FullScreenComponent
+              enableFullScreenMode={enableFullScreenMode}
+              isFullscreenEnabled={this.state.isFullscreenModeEnabled}
+            />
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ class VideoPlayerLayout extends Component{
     render(){
         return (
           <div className="videoPlayer">
-            <div className="videoPlayerContainer">
+            <div id="videoPlayerComp" className="videoPlayerContainer">
               <VideoPlayerComponent ref={videoPlayerRef} />
               <div className="videoOverlay top-gradient"></div>
               <PlayerControlsComponent videoRef={videoPlayerRef} />
