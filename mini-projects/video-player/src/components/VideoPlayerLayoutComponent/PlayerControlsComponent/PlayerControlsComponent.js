@@ -47,7 +47,6 @@ class PlayerControlsComponent extends Component {
     const enableFullScreenMode = ( enableFullscreen) => {
         if(enableFullscreen === true){
           document.getElementById("videoPlayerComp").requestFullscreen();
-          // videoRef.current.requestFullscreen();
           this.setState({ isFullscreenModeEnabled : true });
         }else{
           document.exitFullscreen();

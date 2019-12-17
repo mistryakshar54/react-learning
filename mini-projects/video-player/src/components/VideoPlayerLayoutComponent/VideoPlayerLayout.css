@@ -80,3 +80,7 @@ video{
 video::-webkit-media-controls {
   display:none !important;
 }
+
+.flex-end{
+    justify-content: flex-end;
+}

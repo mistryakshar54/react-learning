@@ -5,7 +5,7 @@ import { faExpand, faCompress } from "@fortawesome/free-solid-svg-icons";
 const FullScreenComponent = ( {isFullscreenEnabled , enableFullScreenMode} ) => {
     console.log("FullScreen Enabled: " , isFullscreenEnabled)
     return (
-      <div className="controlItems">
+      <div className="controlItems flex-end">
         {isFullscreenEnabled === true ? (
           <FontAwesomeIcon
             onClick={() => {
