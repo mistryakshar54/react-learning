@@ -6,6 +6,7 @@
     right: 0;
     padding: 2% 0%;
     width: 100%;
+    flex-direction: column;
 }
 
 .videoPlayer{
@@ -68,7 +69,7 @@
 }
 
 .controlItems > div  {
-    margin: 0% 2%;
+    margin: 1% 2%;
     display: flex;
 
 }
@@ -94,4 +95,6 @@ video::-webkit-media-controls {
     width: 50%;
     color: red;
     background-color: red;
+    margin: 0!important;
+    border: 1px solid red;
 }
