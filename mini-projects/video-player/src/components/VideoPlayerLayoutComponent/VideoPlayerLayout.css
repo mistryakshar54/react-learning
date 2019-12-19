@@ -84,3 +84,14 @@ video::-webkit-media-controls {
 .flex-end{
     justify-content: flex-end;
 }
+
+.progressBarOuter{
+    width: 100%;
+    background-color: black;
+}
+
+.progressBar{
+    width: 50%;
+    color: red;
+    background-color: red;
+}
