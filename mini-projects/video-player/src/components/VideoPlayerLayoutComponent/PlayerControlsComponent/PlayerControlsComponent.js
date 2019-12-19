@@ -61,6 +61,12 @@ class PlayerControlsComponent extends Component {
           this.setState({ isFullscreenModeEnabled: true });
         }
     }
+    const getCurrentVideoPlayerTime = () => {
+        return {
+          currentTime : (videoRef.current) ? videoRef.current.currentTime : 0,
+          videoDuration: (videoRef.current)? videoRef.current.duration : 0
+        }
+    }
     return (
       <div className="videoOverlay">
         <div onClick={togglePlay}>
@@ -71,7 +77,10 @@ class PlayerControlsComponent extends Component {
         </div>
         <div className="videoControls showControls">
           <div className="controlItems">
-            <ProgressBarComponent />
+            <ProgressBarComponent
+              isPlayerRunning={this.state.isPlayerRunning}
+              getCurrentVideoPlayerTime={getCurrentVideoPlayerTime}
+            />
           </div>
           <div className="controlItems">
             <PlaybackComponent
