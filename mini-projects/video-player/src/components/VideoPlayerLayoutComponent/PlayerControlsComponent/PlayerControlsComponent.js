@@ -4,10 +4,13 @@ import VideoOverlayComponent from "./VideoOverlayComponent/VideoOverlayComponent
 import PlayerIntervalComponent from './PlayerIntervalComponent/PlayerIntervalComponent';
 import FullScreenComponent from "./FullscreenComponent/FullScreenComponent";
 import PropTypes from 'prop-types'; // ES6
+import ProgressBarComponent from "./ProgressBarComponent/ProgressBarComponent";
+import VolumeComponent from './VolumeComponent/VolumeComponent'
 class PlayerControlsComponent extends Component {
   state = {
     isPlayerRunning: false,
-    isFullscreenModeEnabled: false
+    isFullscreenModeEnabled: false,
+    volumeEnabled : true
   };
   updateIsPlayerRunning = playerRunning => {
     this.setState({ isPlayerRunning: playerRunning });
@@ -44,6 +47,11 @@ class PlayerControlsComponent extends Component {
       this.setState({ isPlayerRunning: true });
     }
 
+    const toggleVolume = () => {
+      console.log("Toggled Volume");
+      (this.state.volumeEnabled) ? videoRef.current.volume = 0 : videoRef.current.volume = 1;
+      this.setState({ volumeEnabled: !this.state.volumeEnabled });
+    }
     const enableFullScreenMode = ( enableFullscreen) => {
         if(enableFullscreen === true){
           document.getElementById("videoPlayerComp").requestFullscreen();
@@ -63,12 +71,19 @@ class PlayerControlsComponent extends Component {
         </div>
         <div className="videoControls showControls">
           <div className="controlItems">
+            <ProgressBarComponent />
+          </div>
+          <div className="controlItems">
             <PlaybackComponent
               togglePlay={togglePlay}
               updatePlayerStatus={this.updateIsPlayerRunning}
               isPlayerRunning={this.state.isPlayerRunning}
             />
             <PlayerIntervalComponent skipToInterval={skipToInterval} />
+            <VolumeComponent
+              isVolumeEnabled={this.state.volumeEnabled}
+              toggleVolume={toggleVolume}
+            />
             <FullScreenComponent
               enableFullScreenMode={enableFullScreenMode}
               isFullscreenEnabled={this.state.isFullscreenModeEnabled}
