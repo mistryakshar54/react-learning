@@ -21,7 +21,8 @@ class PlayerControlsComponent extends PureComponent {
   };
 
   updateIsPlayerRunning = playerRunning => {
-    this.setState({ isPlayerRunning: playerRunning });
+    this.setState({ isPlayerRunning: playerRunning});
+    
   };
   render() {
     const { videoRef } = this.props;
@@ -29,10 +30,10 @@ class PlayerControlsComponent extends PureComponent {
     const togglePlay = () => {
       if (!videoRef.current.paused) {
         videoRef.current.pause();
-        this.setState({ isPlayerRunning: false });
+        this.setState({ isPlayerRunning: false ,  showPlayerControls : true });
       } else {
         videoRef.current.play();
-        this.setState({ isPlayerRunning: true });
+        this.setState({ isPlayerRunning: true , showPlayerControls : false });
       }
     };
     const skipToInterval = skipDirection => {
@@ -78,50 +79,65 @@ class PlayerControlsComponent extends PureComponent {
     };
 
     return (
-      <div
-        className="videoOverlay"
-        onMouseOver={() => {
-          this.togglePlayerControls(true);
-        }}
-        onMouseLeave={() => {
-          this.togglePlayerControls(false);
-        }}
-      >
-        <div onClick={togglePlay}>
-          <VideoOverlayComponent
-            className="videoOverlay"
-            isPlayerRunning={this.state.isPlayerRunning}
-          />
+      <div>
+        <div
+          style={{
+            opacity: this.state.isPlayerRunning ? 0 : 1
+          }}
+          className="videoOverlay top-gradient"
+        ></div>
+
+        <div
+          className="videoOverlay"
+          onMouseOver={() => {
+            this.togglePlayerControls(true);
+          }}
+          // onMouseLeave={() => {
+          //   this.togglePlayerControls(false);
+          // }}
+        >
+          <div onClick={togglePlay}>
+            <VideoOverlayComponent
+              className="videoOverlay"
+              isPlayerRunning={this.state.isPlayerRunning}
+            />
+          </div>
+          <div
+            className="videoControls showControls"
+            style={{
+              opacity: this.state.showPlayerControls ? 1 : 0
+            }}
+          >
+            <div className="controlItems">
+              <ProgressBarComponent
+                isPlayerRunning={this.state.isPlayerRunning}
+                getCurrentVideoPlayerTime={getCurrentVideoPlayerTime}
+              />
+            </div>
+            <div className="controlItems">
+              <PlaybackComponent
+                togglePlay={togglePlay}
+                updatePlayerStatus={this.updateIsPlayerRunning}
+                isPlayerRunning={this.state.isPlayerRunning}
+              />
+              <PlayerIntervalComponent skipToInterval={skipToInterval} />
+              <VolumeComponent
+                isVolumeEnabled={this.state.volumeEnabled}
+                toggleVolume={toggleVolume}
+              />
+              <FullScreenComponent
+                enableFullScreenMode={enableFullScreenMode}
+                isFullscreenEnabled={this.state.isFullscreenModeEnabled}
+              />
+            </div>
+          </div>
         </div>
         <div
-          className="videoControls showControls"
           style={{
-            opacity: this.state.showPlayerControls ? 1 : 0
+            opacity: this.state.isPlayerRunning ? 0 : 1
           }}
-        >
-          <div className="controlItems">
-            <ProgressBarComponent
-              isPlayerRunning={this.state.isPlayerRunning}
-              getCurrentVideoPlayerTime={getCurrentVideoPlayerTime}
-            />
-          </div>
-          <div className="controlItems">
-            <PlaybackComponent
-              togglePlay={togglePlay}
-              updatePlayerStatus={this.updateIsPlayerRunning}
-              isPlayerRunning={this.state.isPlayerRunning}
-            />
-            <PlayerIntervalComponent skipToInterval={skipToInterval} />
-            <VolumeComponent
-              isVolumeEnabled={this.state.volumeEnabled}
-              toggleVolume={toggleVolume}
-            />
-            <FullScreenComponent
-              enableFullScreenMode={enableFullScreenMode}
-              isFullscreenEnabled={this.state.isFullscreenModeEnabled}
-            />
-          </div>
-        </div>
+          className="videoOverlay bottom-gradient"
+        ></div>
       </div>
     );
   }
