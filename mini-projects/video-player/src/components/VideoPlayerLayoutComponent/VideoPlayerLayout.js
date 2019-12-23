@@ -17,7 +17,6 @@ class VideoPlayerLayout extends Component{
               <PlayerControlsComponent
                 videoRef={videoPlayerRef}
               />
-              <div className="videoOverlay bottom-gradient"></div>
             </div>
           </div>
         );
