@@ -1,0 +1,8 @@
+.time-component{
+    display: flex;
+    flex-direction: column;
+}
+
+.timer-component{
+    display: flex;
+}
