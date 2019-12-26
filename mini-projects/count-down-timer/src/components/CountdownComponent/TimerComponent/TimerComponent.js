@@ -1,20 +1,33 @@
 import React , { useState , useEffect } from 'react';
-var TotalCount = 0;
+import "./TimerComponent.css";
+
+let timeOutId = 0;        
 const TimerComponent = ( props ) => {
+
     const { timerData } = props;
     const [ countdownTime, setCountdownTime] = useState(0);
-    // const [timeLeft , setTimeLeft] = useState({ hours : 0 , minutes : 0 , seconds : 0 });
+
+    const [timeLeft , setTimeLeft] = useState({ hours : 0 , minutes : 0 , seconds : 0 });
+    
     const calculateTimeLeft = () => {
         let currDate = new Date().getTime();
         let difference = countdownTime - currDate; ;
-        console.log("countdownTime", countdownTime, "currDate", currDate , "difference" , difference);
         let timeDiff = {
             hours: difference > 0 ? (Math.floor((difference / (1000 * 60 * 60)) % 24)) : 0,
             minutes: difference > 0 ? Math.floor((difference / 1000 / 60) % 60) : 0,
             seconds: difference > 0 ? Math.floor((difference / 1000) % 60) : 0
         };
-        console.log("timeDiff => ", timeDiff);
+        timeDiff.hours = (timeDiff.hours < 10) ? `0${timeDiff.hours}` : `${timeDiff.hours}`;
+        timeDiff.minutes = (timeDiff.minutes < 10) ? `0${timeDiff.minutes}`: `${timeDiff.minutes}`;
+        timeDiff.seconds = (timeDiff.seconds < 10) ? `0${timeDiff.seconds}`: `${timeDiff.seconds}`;
         return timeDiff;
+    }
+
+    const stopTimer = () => {
+        if(timeOutId > 0) {
+            clearTimeout(timeOutId);
+        }
+        props.stopCountdown();
     }
     useEffect(() => {
         let expectedTime = new Date().getTime();
@@ -23,25 +36,44 @@ const TimerComponent = ( props ) => {
         expectedTime += minutes > 0 ? minutes * 60000 : 0;
         expectedTime += seconds > 0 ? seconds * 1000 : 0;
         setCountdownTime(expectedTime);
-        console.log("Use Efffect 1 Set", expectedTime);
+        return () => {
+            expectedTime = 0;
+        }
     }, [timerData]);
     
-    
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
     useEffect(() => {
-            console.log("Use Efffect 2 running for count ", TotalCount);
-            setTimeout(() => {
-              TotalCount++;
-              setTimeLeft(calculateTimeLeft());
-            }, 1000);
-       
+        if (countdownTime > new Date().getTime()) {
+          timeOutId = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+          }, 1000);
+        }
+
+        return ()=> {
+            clearTimeout(timeOutId);
+        }
     });
     
     return (
-      <p>
-        Sample Timer
-        {timeLeft.hours} - {timeLeft.minutes} - {timeLeft.seconds}
-      </p>
+      <div className="timer-component">
+        <div>
+          <p className="time-component">
+            <span>{timeLeft.hours}</span>
+            <span>Hours</span>
+          </p>
+          <p className="time-component">
+            <span>{timeLeft.minutes}</span>
+            <span>Minutes</span>
+          </p>
+          <p className="time-component">
+            <span>{timeLeft.seconds}</span>
+            <span>Seconds</span>
+          </p>
+        </div>
+        <div>
+            <button onClick={stopTimer}> Stop </button>
+        </div>
+
+      </div>
     );
 }
 
