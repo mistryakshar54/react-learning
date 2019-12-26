@@ -1,26 +1,39 @@
 import React , {useState , useRef, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
+import axios from "axios";
 
 const SearchFilterComponent = ( props ) => {
     const { filterResults } = props;
     const [ filterKey , setFilterKey ] = useState("");
     const searchRef = useRef(null);
+    const [ ingredientsData , setIngredientsData ] = useState([]);
     useEffect(() => {
-      const timer = setTimeout(() => {
-        if (searchRef.current.value === filterKey) {
-          console.log("Sending to Props");
-          clearTimeout(timer);
-          if (filterKey !== "") {
-            filterResults(filterKey);
+      axios
+        .get(
+          "https://raw.githubusercontent.com/mistryakshar54/react-learning/master/concepts/public/assets/ingredients.json"
+        )
+        .then(resp => {
+          debugger;
+          if (resp.status === 200) {
+            setIngredientsData([...resp.data]);
+            filterResults([...resp.data]);
           }
-        }
-      }, 500);
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [filterKey, searchRef, filterResults]);
-   
+        })
+        .catch(err => {
+          setIngredientsData([]);
+          filterResults([]);
+        });
+    }, [filterResults]);
+
+    useEffect(() => {
+      if (filterKey !== "") {
+        filterResults(ingredientsData.filter(item => item.name.includes(filterKey)));
+      }
+      else{
+        filterResults(ingredientsData);
+      }
+    }, [filterResults, filterKey, ingredientsData]); 
     return (
       <Form>
         <Form.Row className="justify-center">

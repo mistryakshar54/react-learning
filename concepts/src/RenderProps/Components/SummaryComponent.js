@@ -7,7 +7,7 @@ const SummaryComponent = ( props ) => {
             <h2 className="header-label">Bag Items({props.cartItems.length}):<br/></h2>
             <ul className="list-group list-group-flush">
             {
-                props.cartItems.length == 0 ? <label >Nothing to show</label>  :    props.cartItems.map( (item , index) => {
+                props.cartItems.length === 0 ? <label >Nothing to show</label>  :    props.cartItems.map( (item , index) => {
                     totalAmount += item.value;
                     return(
                         <label  key={index}>

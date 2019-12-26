@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import HeaderComponent from "./HeaderComponent";
 import ListComponent from "./ListComponent";
 import CurrencyContextProvider from "../CurrencyContext";

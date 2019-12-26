@@ -1,42 +1,17 @@
-import React, {useState , useEffect} from 'react';
-import IngredientsListComponent from "./Components/IngredientsList/IngredientsList";
+import React, { useState, useCallback } from "react";
 import IngredientComponent from "./Components/Ingredients/Ingredients";
 import SearchFilterComponent from './Components/SearchFilter/SearchFilter';
-import axios from "axios";
 
 const IngredientsLayoutComponent = ( props ) => {
 
     const [ ingredientsList , setingredientsList ] = useState([]);
-    
-    const addNewIngredientHandler = ( ingredient ) => {
-        setingredientsList(currentList => [
-          ...currentList,
-          {
-            id: new Date().getTime().toString().slice(0, 8),
-            ...ingredient
-          }
-        ]);
-    }
+    const filterResultsHandler = useCallback(
+      filterResults => {
+        setingredientsList([...filterResults]);
+      },
+      [setingredientsList]
+    ); 
 
-    useEffect(() => {
-      debugger;
-      axios.get(
-          "https://raw.githubusercontent.com/mistryakshar54/react-learning/master/concepts/public/assets/ingredients.json"
-        )
-        .then(resp => {
-          debugger;
-          if(resp.status === 200){
-            setingredientsList( [...resp.data] );
-          }
-        })
-        .catch(err => {
-        });
-
-    } , []);
-
-    const filterResultsHandler = ( filterKey ) => {
-        setingredientsList( currentList =>  currentList.filter( item => item.title === filterKey )  );
-    }
     return (
       <div>
         <div className="container center-content">
@@ -45,12 +20,11 @@ const IngredientsLayoutComponent = ( props ) => {
           </h1>
         </div>
         <div className="container content-center">
-          <IngredientsListComponent
-            addNewIngredient={addNewIngredientHandler}
+          <SearchFilterComponent
+            filterResults={filterResultsHandler}
           />
-          <SearchFilterComponent filterResults = {filterResultsHandler} />
           <h1 className="content-header">Ingredients</h1>
-          <IngredientComponent ingredientList={ingredientsList} />
+          <IngredientComponent ingredients={ingredientsList} />
         </div>
       </div>
     );
