@@ -1,22 +1,28 @@
 [
     {
         "name" : "salt",
-        "key" : "1000"
+        "key" : "1000",
+        "amount" : 3
+        
     },
     {
         "name": "butter",
-        "key": "1001"
+        "key": "1001",
+        "amount" : 7
     },
     {
         "name": "bread",
-        "key": "1002"
+        "key": "1002",
+        "amount" : 5
     },
     {
         "name": "cheese",
-        "key": "1003"
+        "key": "1003",
+        "amount" : 10
     },
     {
         "name": "pepper",
-        "key": "1004"
+        "key": "1004",
+        "amount" : 4
     }
 ]

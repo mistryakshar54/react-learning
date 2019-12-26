@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import IngredientsListComponent from "./Components/IngredientsList/IngredientsList";
 import IngredientComponent from "./Components/Ingredients/Ingredients";
 import SearchFilterComponent from './Components/SearchFilter/SearchFilter';
+import axios from "axios";
+
 const IngredientsLayoutComponent = ( props ) => {
 
     const [ ingredientsList , setingredientsList ] = useState([]);
@@ -15,6 +17,22 @@ const IngredientsLayoutComponent = ( props ) => {
           }
         ]);
     }
+
+    useEffect(() => {
+      debugger;
+      axios.get(
+          "https://raw.githubusercontent.com/mistryakshar54/react-learning/master/concepts/public/assets/ingredients.json"
+        )
+        .then(resp => {
+          debugger;
+          if(resp.status === 200){
+            setingredientsList( [...resp.data] );
+          }
+        })
+        .catch(err => {
+        });
+
+    } , []);
 
     const filterResultsHandler = ( filterKey ) => {
         setingredientsList( currentList =>  currentList.filter( item => item.title === filterKey )  );

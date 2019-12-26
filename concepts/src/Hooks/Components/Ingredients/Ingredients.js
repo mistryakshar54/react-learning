@@ -9,7 +9,7 @@ const IngredientComponent = ( props ) => {
           <ul key={index} className="list-group list-group-flush center-items">
             <li className="list-group-item text-left col-7">
               <label>
-                {item.title} - $ &nbsp; {item.amount}
+                {item.name} - $ &nbsp; {item.amount}
               </label>
               <FontAwesomeIcon
                 onClick={props.addToCart}
