@@ -17,7 +17,6 @@ const IngredientsLayoutComponent = ( props ) => {
     }
 
     const filterResultsHandler = ( filterKey ) => {
-        
         setingredientsList( currentList =>  currentList.filter( item => item.title === filterKey )  );
     }
     return (

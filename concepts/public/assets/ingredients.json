@@ -1,0 +1,22 @@
+[
+    {
+        "name" : "salt",
+        "key" : "1000"
+    },
+    {
+        "name": "butter",
+        "key": "1001"
+    },
+    {
+        "name": "bread",
+        "key": "1002"
+    },
+    {
+        "name": "cheese",
+        "key": "1003"
+    },
+    {
+        "name": "pepper",
+        "key": "1004"
+    }
+]
