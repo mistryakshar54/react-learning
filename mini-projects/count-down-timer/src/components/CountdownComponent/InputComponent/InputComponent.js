@@ -9,7 +9,7 @@ const InputComponent = props => {
   const timerComponentClass = `time-component ${themeMode}`;
   const timerInputClass = `timer-input ${themeMode}`;
   const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState(2);
   const [seconds, setSeconds] = useState(0);
   const startTimer = () => {
     props.startCountdown({

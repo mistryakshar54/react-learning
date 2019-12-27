@@ -25,17 +25,17 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    border: 3px solid #dc1667;
     border-radius: 50%;
     height: 518px;
     width: 534px;
+    z-index: 10;
+    border: 10px solid #515bc4;
+    
 }
 
 .main-container-overlay{
-    border: 3px solid white;
-    border-radius: 50%;
-    height: 518px;
-    width: 534px;
+    border: 10px solid #515bc4;
+    border-radius: 58%;
 }
 
 .timer-label-container{

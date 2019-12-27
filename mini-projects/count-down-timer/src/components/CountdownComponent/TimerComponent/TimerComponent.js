@@ -57,8 +57,7 @@ const TimerComponent = ( props ) => {
     });
     
     return (
-      <div>
-        <div className="main-container-overlay"></div>
+      <div className="main-container-overlay">
         <div className="main-container">
           <div className="timer-component-container">
             <div className={timerItemClass}>
@@ -82,10 +81,15 @@ const TimerComponent = ( props ) => {
           </div>
           <div id="stop-btn">
             <div onClick={stopTimer}>
-              <FontAwesomeIcon className={`icon-${themeMode}`} id="stop-icon" icon={faStop} />
+              <FontAwesomeIcon
+                className={`icon-${themeMode}`}
+                id="stop-icon"
+                icon={faStop}
+              />
             </div>
           </div>
         </div>
+        {/* <div className="main-container-overlay"></div> */}
       </div>
     );
 }
