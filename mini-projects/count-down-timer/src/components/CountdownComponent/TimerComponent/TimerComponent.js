@@ -1,5 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import "./TimerComponent.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStop } from "@fortawesome/free-solid-svg-icons";
 
 let timeOutId = 0;        
 const TimerComponent = ( props ) => {
@@ -54,25 +56,35 @@ const TimerComponent = ( props ) => {
     });
     
     return (
-      <div className="timer-component">
-        <div>
-          <p className="time-component">
-            <span>{timeLeft.hours}</span>
-            <span>Hours</span>
-          </p>
-          <p className="time-component">
-            <span>{timeLeft.minutes}</span>
-            <span>Minutes</span>
-          </p>
-          <p className="time-component">
-            <span>{timeLeft.seconds}</span>
-            <span>Seconds</span>
-          </p>
+      <div>
+        <div className="main-container-overlay"></div>
+        <div className="main-container">
+          <div className="timer-component-container">
+            <div className="timer-item">
+              <div className="timer-label-container">
+                <label className="timer-label">{timeLeft.hours}</label>
+              </div>
+              <span>Hours</span>
+            </div>
+            <div className="timer-item">
+              <div className="timer-label-container">
+                <label className="timer-label">{timeLeft.minutes}</label>
+              </div>
+              <span>Minutes</span>
+            </div>
+            <div className="timer-item">
+              <div className="timer-label-container">
+                <label className="timer-label">{timeLeft.seconds}</label>
+              </div>
+              <span>Seconds</span>
+            </div>
+          </div>
+          <div id="stop-btn">
+            <div onClick={stopTimer}>
+              <FontAwesomeIcon id="stop-icon" icon={faStop} />
+            </div>
+          </div>
         </div>
-        <div>
-            <button onClick={stopTimer}> Stop </button>
-        </div>
-
       </div>
     );
 }

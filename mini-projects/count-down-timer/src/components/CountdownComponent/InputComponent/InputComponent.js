@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./InputComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
  
 const InputComponent = props => {
   const [hours, setHours] = useState(0);
