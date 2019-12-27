@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import { ThemeContext } from "./Context/ThemeContext";
 import CountdownComponent from './components/CountdownComponent/CountdownComponent';
 function App() {
+  const { themeMode, toggleTheme } = useContext(ThemeContext);
+
+  const headerClass = `App-header ${themeMode}`;
+  const toggleThemeMode = () => {
+    toggleTheme(  (themeMode === 'dark') ? 'light' : 'dark'  );
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>
-          <CountdownComponent />
-        </p>
+      <header className={headerClass}>
+        <CountdownComponent />
+        <button className={`theme-toggle-btn icon-${themeMode}`} onClick={toggleThemeMode}>
+          Toggle {themeMode === "dark" ? "Light" : "Dark"} Mode
+        </button>
       </header>
     </div>
   );
