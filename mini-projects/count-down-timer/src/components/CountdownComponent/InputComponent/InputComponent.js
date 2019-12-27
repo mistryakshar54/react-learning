@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./InputComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
- 
+import { ThemeContext } from "../../../Context/ThemeContext";
+
 const InputComponent = props => {
+  const { themeMode } = useContext(ThemeContext);
+  const timerComponentClass = `time-component ${themeMode}`;
+  const timerInputClass = `timer-input ${themeMode}`;
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -17,10 +21,10 @@ const InputComponent = props => {
   return (
     <div className="input-component-container">
       <div className="input-component">
-        <p className="time-component">
+        <p className={timerComponentClass}>
           <div className="input-container">
             <input
-              className="timer-input"
+              className={timerInputClass}
               type="number"
               value={hours}
               onChange={e => setHours(e.target.value)}
@@ -28,10 +32,10 @@ const InputComponent = props => {
           </div>
           <span>Hours</span>
         </p>
-        <p className="time-component">
+        <p className={timerComponentClass}>
           <div className="input-container">
             <input
-              className="timer-input"
+              className={timerInputClass}
               type="number"
               value={minutes}
               onChange={e => setMinutes(e.target.value)}
@@ -39,10 +43,10 @@ const InputComponent = props => {
           </div>
           <span>Minutes</span>
         </p>
-        <p className="time-component">
+        <p className={timerComponentClass}>
           <div className="input-container">
             <input
-              className="timer-input"
+              className={timerInputClass}
               type="number"
               value={seconds}
               onChange={e => setSeconds(e.target.value)}
@@ -53,7 +57,11 @@ const InputComponent = props => {
       </div>
       <div id="play-btn">
         <div onClick={startTimer}>
-          <FontAwesomeIcon id="play-icon" icon={faPlay} />
+          <FontAwesomeIcon
+            className={`icon-${themeMode}`}
+            id="play-icon"
+            icon={faPlay}
+          />
         </div>
       </div>
     </div>

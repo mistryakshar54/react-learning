@@ -1,11 +1,12 @@
-import React , { useState , useEffect } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import "./TimerComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStop } from "@fortawesome/free-solid-svg-icons";
-
+import { ThemeContext } from '../../../Context/ThemeContext';
 let timeOutId = 0;        
 const TimerComponent = ( props ) => {
-
+    const { themeMode } = useContext(ThemeContext);
+    const timerItemClass = `timer-item ${themeMode}`;
     const { timerData } = props;
     const [ countdownTime, setCountdownTime] = useState(0);
 
@@ -60,19 +61,19 @@ const TimerComponent = ( props ) => {
         <div className="main-container-overlay"></div>
         <div className="main-container">
           <div className="timer-component-container">
-            <div className="timer-item">
+            <div className={timerItemClass}>
               <div className="timer-label-container">
                 <label className="timer-label">{timeLeft.hours}</label>
               </div>
               <span>Hours</span>
             </div>
-            <div className="timer-item">
+            <div className={timerItemClass}>
               <div className="timer-label-container">
                 <label className="timer-label">{timeLeft.minutes}</label>
               </div>
               <span>Minutes</span>
             </div>
-            <div className="timer-item">
+            <div className={timerItemClass}>
               <div className="timer-label-container">
                 <label className="timer-label">{timeLeft.seconds}</label>
               </div>
@@ -81,7 +82,7 @@ const TimerComponent = ( props ) => {
           </div>
           <div id="stop-btn">
             <div onClick={stopTimer}>
-              <FontAwesomeIcon id="stop-icon" icon={faStop} />
+              <FontAwesomeIcon className={`icon-${themeMode}`} id="stop-icon" icon={faStop} />
             </div>
           </div>
         </div>
