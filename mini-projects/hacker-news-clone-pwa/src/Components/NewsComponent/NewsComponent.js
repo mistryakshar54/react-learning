@@ -1,11 +1,13 @@
 import React from "react";
 import ListView from '../ListView/ListView';
+import withLoader from "../LoadingHOC/Loader";
 const NewsComponent = props => {
-    return(
-        <div>
-            <ListView />
-        </div>
-    );
+  const ListViewComponent = withLoader(ListView);
+  return (
+    <div>
+      <ListViewComponent isLoading={false} />
+    </div>
+  );
 };
 
 export default NewsComponent;
