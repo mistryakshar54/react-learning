@@ -7,10 +7,14 @@ import Divider from "@material-ui/core/Divider";
 import ListViewItem from './ListViewItem/ListViewItem';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ExposurePlus1 from "@material-ui/icons/ExposurePlus1";
+import IconButton from "@material-ui/core/IconButton";
+import Badge from "@material-ui/core/Badge";
+import MailIcon from "@material-ui/icons/Mail";
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
+    marginTop:"5%",
     // maxWidth: 360,
     backgroundColor: theme.palette.background.paper
   }
@@ -22,11 +26,8 @@ const ListView = (props) => {
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem button>
-        <ListItemIcon>
-          <ExposurePlus1 />
-        </ListItemIcon>
         <ListViewItem />
-      </ListItem>
+       </ListItem>
       <Divider />
       <ListItem button divider>
         <ListItemText primary="Drafts" />

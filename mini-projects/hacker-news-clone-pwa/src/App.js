@@ -29,7 +29,7 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Layout />
         
       </Container>
