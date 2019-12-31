@@ -11,36 +11,35 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MailIcon from "@material-ui/icons/Mail";
 
+import withLoader from "../LoadingHOC/Loader";
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    marginTop:"5%",
-    // maxWidth: 360,
     backgroundColor: theme.palette.background.paper
   }
 }));
 
 const ListView = (props) => {
   const classes = useStyles();
-
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      <ListItem button>
+      <ListItem >
         <ListViewItem />
        </ListItem>
       <Divider />
-      <ListItem button divider>
+      <ListItem  divider>
         <ListItemText primary="Drafts" />
       </ListItem>
-      <ListItem button>
+      <ListItem >
         <ListItemText primary="Trash" />
       </ListItem>
       <Divider light />
-      <ListItem button>
+      <ListItem >
         <ListItemText primary="Spam" />
       </ListItem>
     </List>
   );
 }
-export default ListView;
+export default withLoader(ListView);
 

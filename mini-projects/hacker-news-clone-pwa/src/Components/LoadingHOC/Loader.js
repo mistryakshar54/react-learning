@@ -13,12 +13,11 @@ const withLoader =  WrappedComponent => ( props ) => {
     const {isLoading} = props;
       const classes = useStyles();
 
-  return isLoading === true ? (
-    <WrappedComponent />
+  return isLoading === false ? (
+    <WrappedComponent {...props} />
   ) : (
     <div className={classes.root}>
       <CircularProgress color="primary" />
-      Still Loading
     </div>
   );
 };

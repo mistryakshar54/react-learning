@@ -1,12 +1,12 @@
 import React , {Fragment} from "react";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
 import Link from "@material-ui/core/Link";
-import Toolbar from "@material-ui/core/Toolbar";
 import { Provider } from "react-redux";
 import store from './store/Store';
 import Layout from './Components/LayoutComponent/Layout';
+import { BrowserRouter as Router } from 'react-router-dom';
+import  HeaderComponent  from "./Components/LayoutComponent/Header/Header";
 function Copyright() {
   return (
     
@@ -23,20 +23,15 @@ function Copyright() {
 function App() {
   return (
     <Provider store={store}>
-      <Fragment>
-        <AppBar position="relative">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Hacker News Clone
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Container maxWidth="lg">
-          <Layout />
-          
-        </Container>
-        <Copyright />
-      </Fragment>
+      <Router>
+        <Fragment>
+          <HeaderComponent/>
+          <Container maxWidth="lg">
+            <Layout />
+          </Container>
+          <Copyright />
+        </Fragment>
+      </Router>
     </Provider>
   );
 }
