@@ -5,7 +5,7 @@ const NewsComponent = props => {
   const ListViewComponent = withLoader(ListView);
   return (
     <div>
-      <ListViewComponent isLoading={false} />
+      <ListView isLoading={false} isItTrue={false} />
     </div>
   );
 };
