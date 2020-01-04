@@ -5,7 +5,7 @@ const CoreReducer = ( stateSlice = intialState.core , action) => {
         let loadingApi = Object.assign({}, stateSlice);
         loadingApi.loadingState = false;
         loadingApi.apiStatus = 200;
-        loadingApi.message = "";
+        loadingApi.message = "y";
         return { ...loadingApi };
       }
       case "ERROR_API": {
@@ -19,7 +19,7 @@ const CoreReducer = ( stateSlice = intialState.core , action) => {
         let loadingApi = Object.assign({}, stateSlice);
         loadingApi.loadingState = true;
         loadingApi.apiStatus = 200;
-        loadingApi.message = "";
+        loadingApi.message = "n";
         return { ...loadingApi };
       }
       default:
