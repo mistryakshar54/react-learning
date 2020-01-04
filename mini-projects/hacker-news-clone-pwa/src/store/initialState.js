@@ -9,11 +9,9 @@ const intialState = {
     },
     toggleAlert: false
   },
-  auth: {
-    authToken: null,
-    isAuthenticated: false,
-    authUser: {},
-    expiresAt: 0
+  news: {
+    newslist : [],
+    currentPageNo : 0,
   }
 };
 
