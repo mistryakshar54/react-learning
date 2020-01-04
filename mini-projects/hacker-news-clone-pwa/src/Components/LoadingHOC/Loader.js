@@ -10,7 +10,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const withLoader =  WrappedComponent => ( props ) => {
+  
     const {isLoading} = props;
+    console.log("Loader comp" , props);
       const classes = useStyles();
 
   return isLoading === false ? (
