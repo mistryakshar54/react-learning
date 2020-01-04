@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ListViewItem = ( props ) => {
+    // const {slice} = props;
+    // debugger;
+    // console.log(slice);
     return (
       <div>
         <div className="item-header">
