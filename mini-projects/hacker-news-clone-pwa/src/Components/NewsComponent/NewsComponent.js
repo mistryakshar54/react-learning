@@ -9,7 +9,7 @@ const NewsSelector = createSelector(
   state => state.CoreReducer.loadingState,
   state => state.NewsReducer,
   (loadingState , newsData) => {
-    return { isLoading : loadingState, ...newsData };
+    return { isLoading : loadingState,newsData };
   }
 );
 
@@ -21,6 +21,7 @@ const NewsComponent = props => {
 
   const coreSlice = useSelector(NewsSelector);
   let { isLoading , newsData } = coreSlice;
+  debugger;
   return (
     <div>
       <ListView isLoading={isLoading} listData={newsData} />

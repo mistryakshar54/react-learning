@@ -14,33 +14,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const coreSelector = createSelector((state => {
-//   debugger;
-//   console.log(state.CoreReducer);
-//   return state.CoreReducer;
-// } ), shallowEqual);
 const ListView = (props) => {
   const classes = useStyles();
   const {listData} = props;
-  console.log("listData" , listData);
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      <ListItem>
-        {
-          <ListViewItem/>
-        } 
-      </ListItem>
-      <Divider />
-      <ListItem divider>
-        <ListItemText primary="Drafts" />
-      </ListItem>
-      <ListItem>
-        <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider light />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
+      {
+        listData.newslist.map( (newsItem , index) => {
+          return (
+            <div key={`news-item-${index}`}>
+              <ListItem>
+                <ListViewItem />
+              </ListItem>
+              <Divider />
+            </div>
+          );
+        })
+      }
     </List>
   );
 }
