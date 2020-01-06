@@ -59,15 +59,12 @@ const ListView = (props) => {
                     {listItem.title}
                   </Typography>
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      <Person /> {listItem.user}
-                    </Typography>
-                    - <Schedule/> {listItem.time_ago}
+                    <span style={{ display: "flex" }}>
+                      <Person /> &nbsp;{listItem.user}
+                    </span>
+                    <span style={{ display: "flex", marginLeft: "3%" }}>
+                      <Schedule /> &nbsp; {listItem.time_ago}
+                    </span>
                   </div>
                 </div>
                 {/* <ListItemText
