@@ -24,7 +24,11 @@ const NewsComponent = props => {
   debugger;
   return (
     <div>
-      <ListView isLoading={isLoading} listData={newsData} />
+      <ListView
+        isLoading={isLoading}
+        listData={newsData.newslist}
+        currentPageNo={newsData.currentPageNo}
+      />
     </div>
   );
 };
