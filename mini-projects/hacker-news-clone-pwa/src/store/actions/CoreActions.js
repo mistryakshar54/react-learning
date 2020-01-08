@@ -32,7 +32,7 @@ export const dispatchGet = async (endPoint, pageNo) => {
     data: [],
     message: ""
   };
-  let url = pageNo > 0 ? endPoint + "/page=" + pageNo : endPoint;
+  let url = pageNo > 0 ? endPoint + "?page=" + pageNo : endPoint;
   try {
     const response = await instance.get(url);
     respObj.data = response.data;

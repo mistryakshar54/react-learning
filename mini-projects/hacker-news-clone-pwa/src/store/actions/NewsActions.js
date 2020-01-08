@@ -1,8 +1,8 @@
 import * as coreActions from './CoreActions';
-export const fetchNews = () => {
+export const fetchNews = ( pageType , pageNo ) => {
     return async (dispatch) => {
         dispatch( coreActions.setLoadingState() );
-        const newsData = await coreActions.dispatchGet("news" , 0);
+        const newsData = await coreActions.dispatchGet(pageType, pageNo);
         if(newsData.status === 200){
             dispatch( coreActions.setSuccessState() );
             dispatch(loadNews(newsData.data , 0));
