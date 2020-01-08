@@ -3,41 +3,48 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { NavLink} from 'react-router-dom';
+import { Link,NavLink } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 const useStyles = makeStyles(theme => ({
   link: {
     padding: theme.spacing(1, 3),
-    margin: '0px 8px',
-    justifyContent:'flex-end',
-    color:'white',
-    textTransform:'none',
-    cursor:'pointer',
-    textDecoration:'none',
-    fontSize:'1.2em',
-    fontWeight:'bold',
-    height:'100%',
-    '&:hover' : {
-        textDecoration:'none'
-    },
+    margin: "0px 8px",
+    justifyContent: "flex-end",
+    color: "white",
+    textTransform: "none",
+    cursor: "pointer",
+    textDecoration: "none",
+    fontSize: "1.2em",
+    fontWeight: "bold",
+    height: "100%",
+    "&:hover": {
+      textDecoration: "none"
+    }
   },
-  toolbar:{
-      alignItems:'flex-end',
-  },
-  active:{
-      borderBottom:'5px solid white'
-  },
-  nav:{
-      width: '100%',
-      display: 'flex',
-      alignItems:'flex-start',
-      height:'100%'
-  },
-  brand:{
-    padding: '5px 10px',
-    border: '1px solid white',
-  }
 
+  toolbar: {
+    alignItems: "flex-end"
+  },
+  active: {
+    borderBottom: "5px solid white"
+  },
+  nav: {
+    width: "100%",
+    display: "flex",
+    alignItems: "flex-start",
+    height: "100%"
+  },
+  brand: {
+    padding: "5px 10px",
+    border: "1px solid white",
+    
+  },
+  brandLink:{
+    color: "white",
+    textTransform: "none",
+    cursor: "pointer",
+    textDecoration: "none"
+  }
 }));
 
 const HeaderComponent = ( props ) => {
@@ -60,7 +67,9 @@ const classes = useStyles();
                 color="inherit"
                 noWrap
               >
-                HN
+                <Link className={classes.brandLink} to="/">
+                  HN
+                </Link>
               </Typography>
               {navItems.map((navItem, index) => {
                 return (
