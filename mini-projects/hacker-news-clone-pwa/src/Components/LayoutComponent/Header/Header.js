@@ -38,11 +38,11 @@ const useStyles = makeStyles(theme => ({
 
 const HeaderComponent = ( props ) => {
 const navItems = [
-  { itemName: "Top", url: "/top" },
-  { itemName: "New", url: "/new" },
-  { itemName: "Ask", url: "/ask" },
-  { itemName: "Show", url: "/show" },
-  { itemName: "Jobs", url: "/jobs" }
+  { itemName: "Top", url: "/newest/1" },
+  { itemName: "New", url: "/news/1" },
+  { itemName: "Ask", url: "/ask/1" },
+  { itemName: "Show", url: "/show/1" },
+  { itemName: "Jobs", url: "/jobs/1" }
 ];
 const classes = useStyles();
     return (
@@ -52,9 +52,8 @@ const classes = useStyles();
 
           <nav className={classes.nav}>
             <Typography variant="h6" color="inherit" noWrap>
-              Hacker News Clone
+              HN
             </Typography>
-            {/* <div> */}
                 {navItems.map((navItem, index) => {
                 return (
                     <NavLink

@@ -8,18 +8,18 @@ const NotFound = lazy(() => import("./NotFoundComponent/NotFoundComponent"));
 
 const Layout = ( props ) => {
     return (
-      <Paper style={{ marginTop: "5%" }} elevation={3}>
-         <Suspense fallback={<div>Loading...</div>}>
-         
-            <Switch>
-            <Route path="/top" exact component={News} />
-            <Route path="*" component={NotFound} />
-            </Switch>
-            <Typography variant="h4" component="h1" gutterBottom>
-            Create React App v4-beta example
-            </Typography>
-         </Suspense> 
-      </Paper>
+      // <Paper style={{ marginTop: "5%" }} elevation={3}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/newest/:id" exact component={News} />
+          <Route path="/news/:id" exact component={News} />
+          <Route path="/ask/:id" exact component={News} />
+          <Route path="/show/:id" exact component={News} />
+          <Route path="/jobs/:id" exact component={News} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Suspense>
+      // </Paper>
     );
 }
 
