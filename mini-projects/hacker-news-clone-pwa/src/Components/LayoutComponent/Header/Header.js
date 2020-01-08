@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       alignItems:'flex-start',
       height:'100%'
+  },
+  brand:{
+    padding: '5px 10px',
+    border: '1px solid white',
   }
 
 }));
@@ -48,26 +52,30 @@ const classes = useStyles();
     return (
       <AppBar position="relative">
         <Toolbar className={classes.toolbar}>
-          <Container  maxWidth="lg" style={  { height:'50px' }}>
-
-          <nav className={classes.nav}>
-            <Typography variant="h6" color="inherit" noWrap>
-              HN
-            </Typography>
-                {navItems.map((navItem, index) => {
+          <Container maxWidth="lg" style={{ height: "50px" }}>
+            <nav className={classes.nav}>
+              <Typography
+                className={classes.brand}
+                variant="h6"
+                color="inherit"
+                noWrap
+              >
+                HN
+              </Typography>
+              {navItems.map((navItem, index) => {
                 return (
-                    <NavLink
+                  <NavLink
                     key={`nav-item-${index}`}
                     activeClassName={classes.active}
                     className={classes.link}
                     to={navItem.url}
-                    >
+                  >
                     {navItem.itemName}
-                    </NavLink>
+                  </NavLink>
                 );
-                })}
-            {/* </div> */}
-          </nav>
+              })}
+              {/* </div> */}
+            </nav>
           </Container>
         </Toolbar>
       </AppBar>
