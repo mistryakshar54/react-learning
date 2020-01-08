@@ -31,8 +31,17 @@ const useStyles = makeStyles(theme => ({
     fontSize : '1.7em',
   },
   listItemHeader:{
-    fontSize:'1.5em',
-    fontWeight:'light'
+    fontSize:'1.3em',
+    fontWeight:'light',
+    color:'inherit',
+    textDecoration:'none'
+  },
+  newsMetaData:{
+    display:'flex',
+    fontSize:'0.9em'
+  },
+  icon:{
+    fontSize:'1.2rem'
   }
 }));
 
@@ -54,21 +63,24 @@ const ListView = (props) => {
                     <div>Points</div>
                   </div>
                   <div className={classes.listItemContainer}>
-                    <Typography
-                      component="div"
-                      className={classes.listItemHeader}
-                    >
-                      {listItem.title}
+                    <Typography component="div">
+                      <a
+                        className={classes.listItemHeader}
+                        href={listItem.url ? listItem.url : ""}
+                        target="_blank"
+                      >
+                        {listItem.title}
+                      </a>
                     </Typography>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {listItem.user ? (
-                        <span style={{ display: "flex" , marginRight:'10px' }}>
-                          <PersonOutlined /> &nbsp;{listItem.user}
+                        <span className={classes.newsMetaData} style={{ marginRight: "10px"}}>
+                          <PersonOutlined className={classes.icon} /> &nbsp;{listItem.user}
                         </span>
                       ) : null}
                       {listItem.time_ago ? (
-                        <span style={{ display: "flex" }}>
-                          <Schedule /> &nbsp;{listItem.time_ago}
+                        <span className={classes.newsMetaData}>
+                          <Schedule className={classes.icon} /> &nbsp;{listItem.time_ago}
                         </span>
                       ) : null}
                     </div>
