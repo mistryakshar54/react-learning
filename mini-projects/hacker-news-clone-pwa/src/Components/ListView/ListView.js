@@ -5,7 +5,8 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import withLoader from "../LoadingHOC/Loader";
 import Typography from "@material-ui/core/Typography";
-import { Person, Schedule } from "@material-ui/icons";
+import { PersonOutlined, Schedule } from "@material-ui/icons";
+import Paper from "@material-ui/core/Paper";
 
 
 const useStyles = makeStyles(theme => ({
@@ -30,8 +31,8 @@ const useStyles = makeStyles(theme => ({
     fontSize : '1.7em',
   },
   listItemHeader:{
-    fontSize:'1.8em',
-    fontWeight:'bold'
+    fontSize:'1.5em',
+    fontWeight:'light'
   }
 }));
 
@@ -39,57 +40,63 @@ const ListView = (props) => {
   const classes = useStyles();
   const {listData, currentPageNo} = props;
   return (
-    <List component="nav" className={classes.root} aria-label="mailbox folders">
-      {
-        listData.map( (listItem , index) => {
-          return (
-            <div key={`news-item-${index}`}>
-              <ListItem alignItems="flex-start">
-                <div className={classes.listItemAvatar}>
-                  <div className={classes.listItemPoints}>
-                    {listItem.points}
+    <Paper style={{ marginTop: "1%" }} elevation={3}>
+      <List component="nav" className={classes.root} aria-label="mailbox folders">
+        {
+          listData.map( (listItem , index) => {
+            return (
+              <div key={`news-item-${index}`}>
+                <ListItem alignItems="flex-start">
+                  <div className={classes.listItemAvatar}>
+                    <div className={classes.listItemPoints}>
+                      {listItem.points}
+                    </div>
+                    <div>Points</div>
                   </div>
-                  <div>Points</div>
-                </div>
-                <div className={classes.listItemContainer}>
-                  <Typography
-                    component="div"
-                    className={classes.listItemHeader}
-                  >
-                    {listItem.title}
-                  </Typography>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <span style={{ display: "flex" }}>
-                      <Person /> &nbsp;{listItem.user}
-                    </span>
-                    <span style={{ display: "flex", marginLeft: "3%" }}>
-                      <Schedule /> &nbsp; {listItem.time_ago}
-                    </span>
+                  <div className={classes.listItemContainer}>
+                    <Typography
+                      component="div"
+                      className={classes.listItemHeader}
+                    >
+                      {listItem.title}
+                    </Typography>
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      {listItem.user ? (
+                        <span style={{ display: "flex" , marginRight:'10px' }}>
+                          <PersonOutlined /> &nbsp;{listItem.user}
+                        </span>
+                      ) : null}
+                      {listItem.time_ago ? (
+                        <span style={{ display: "flex" }}>
+                          <Schedule /> &nbsp;{listItem.time_ago}
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
-                </div>
-                {/* <ListItemText
-                  primary={listItem.title}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        className={classes.inline}
-                        color="textPrimary"
-                      >
-                        {listItem.user}
-                      </Typography>
-                      - {listItem.time_ago}
-                    </React.Fragment>
-                  }
-                /> */}
-              </ListItem>
-              <Divider />
-            </div>
-          );
-        })
-      }
-    </List>
+                  {/* <ListItemText
+                    primary={listItem.title}
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          className={classes.inline}
+                          color="textPrimary"
+                        >
+                          {listItem.user}
+                        </Typography>
+                        - {listItem.time_ago}
+                      </React.Fragment>
+                    }
+                  /> */}
+                </ListItem>
+                <Divider />
+              </div>
+            );
+          })
+        }
+      </List>
+    </Paper>
   );
 }
 export default withLoader(ListView);
