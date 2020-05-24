@@ -1,12 +1,19 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 
+import {AppContext} from '../../context/context';
 const Layout = () => {
-    return(
+    const {appState, addTodo,completeTodo, removeTodo} = useContext(AppContext);
+    console.log("appState", appState);
+    return (
         <>
-            <div>Layout Component Comes Here</div>
-            <div>Input Comes Here</div>
-            <div>List Comes Here</div>
-        </>
+        <button onClick={ () => {addTodo({ name: "ABC", isComplete: false })} }>ABc</button>
+        <button onClick={ () => {addTodo({ name: "DEF", isComplete: false })} }>DEF</button>
+        <button onClick={ () => {completeTodo({ name: "DEF", isComplete: true })} }>DEF</button>
+        <button onClick={ () => {removeTodo('DEF');} }>Click</button>
+        <div>Layout Component Comes Here</div>
+        <div>Input Comes Here</div>
+        <div>List Comes Here</div>
+      </>
     );
 }
 
