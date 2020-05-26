@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import {AppContext} from '../../context/context';
+import TodoList from '../todoList/todoList';
 const Layout = () => {
     const {appState, addTodo,completeTodo, removeTodo} = useContext(AppContext);
     console.log("appState", appState);
@@ -12,7 +13,7 @@ const Layout = () => {
         <button onClick={ () => {removeTodo('DEF');} }>Click</button>
         <div>Layout Component Comes Here</div>
         <div>Input Comes Here</div>
-        <div>List Comes Here</div>
+        <TodoList />
       </>
     );
 }

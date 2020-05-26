@@ -1,3 +1,7 @@
-import * as React from "react";
-const TodoListItem = () => {};
+import React, { useContext } from "react";
+import { AppContext } from "../../context/context";
+const TodoListItem = () => {
+     const {appState, addTodo,completeTodo, removeTodo} = useContext(AppContext);
+    
+};
 export default TodoListItem;
