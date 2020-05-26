@@ -24,7 +24,6 @@ export default (state: AppState, action: TodoActions) => {
           }
           return currItem;
       } );
-      debugger;
       return {
         ...state,
         todoList: newTodoList,
