@@ -15,9 +15,9 @@ const TodoList = () => {
             });
         }
         else{
-           return <div> Empty List :( </div>
+           return <div className="emptyText"> Empty List :( </div>;
         }
     }
-    return <div>{renderTodoList()}</div>;
+    return <div className="col-8 todoListComponent">{renderTodoList()}</div>;
 };
 export default TodoList;
