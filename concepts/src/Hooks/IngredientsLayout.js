@@ -18,11 +18,12 @@ const IngredientsLayoutComponent = ( props ) => {
           <h1 className="content-header">
             React Hooks Ingredients List Example
           </h1>
+          <h2 className="content-sub-header">
+            This example uses useEffect() and useCallback() hook to filter data.
+          </h2>
         </div>
         <div className="container content-center">
-          <SearchFilterComponent
-            filterResults={filterResultsHandler}
-          />
+          <SearchFilterComponent filterResults={filterResultsHandler} />
           <h1 className="content-header">Ingredients</h1>
           <IngredientComponent ingredients={ingredientsList} />
         </div>

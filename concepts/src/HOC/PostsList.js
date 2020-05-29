@@ -5,7 +5,7 @@ export const PostsList = ( props ) => {
         return(
             props.dataToPass.map( (post , index) => {
                 return (
-                  <li key={index} className="list-group-item text-left">
+                  <li key={index} className="list-group-item col-8 text-left">
                     <h2 className="header-label">
                       {index + 1}. {post.title}
                     </h2>

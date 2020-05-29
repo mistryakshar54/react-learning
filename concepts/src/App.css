@@ -22,8 +22,10 @@ body
 
 .content-header {
   font-weight: lighter;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
+  font-weight: 200;
+  color: #FF5722;
   padding: 2% 0%;
 }
 
@@ -47,4 +49,22 @@ body
 .justify-center
 {
   justify-content: center;
+}
+.internalLink{
+  color: #FF5722;
+  cursor: pointer;
+  text-decoration: none;
+  
+}
+.internalLink:hover{
+    text-decoration: none;
+    color: #FF5722;
+  }
+
+.item-list-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

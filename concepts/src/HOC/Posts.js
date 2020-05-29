@@ -10,25 +10,28 @@ class Posts extends Component {
     errorMessage : ""
   };
   componentDidMount() {
-   axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
-     this.setState({
-       isDataLoaded: true,
-       posts: res.data.splice(0, 10),
-       errorMessage: ""
-     });
-   })
-   .catch( err => {
-       this.setState({ 
-           isDataLoaded: true,
-           posts : [],
-           errorMessage : err.toJSON().message
-         });
-   });
+    setTimeout(() => {
+      axios.get(`https://jsonplaceholder.typicode.com/posts`).then(res => {
+        this.setState({
+          isDataLoaded: true,
+          posts: res.data.splice(0, 10),
+          errorMessage: ""
+        });
+      })
+      .catch( err => {
+          this.setState({ 
+              isDataLoaded: true,
+              posts : [],
+              errorMessage : err.toJSON().message
+            });
+      });
+    }, 2000);
   }
   render() {
     return (
-      <div className="col-lg-6 item-list-container">
-        <h1 className="header-label">Higher Order Components Example</h1>
+      <div className="item-list-container">
+        <h1 className="content-header">Higher Order Components Example</h1>
+        <h4 >Loader HOC displays the pacman loader untill the posts are loaded.. </h4>
         <PostLoader
           loadingState={this.state.isDataLoaded}
           dataToPass={this.state.posts}
