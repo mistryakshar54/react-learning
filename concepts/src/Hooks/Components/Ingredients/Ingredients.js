@@ -1,6 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const IngredientComponent = ( props ) => {
     return props.ingredients && props.ingredients.length > 0 ? (
@@ -11,22 +9,12 @@ const IngredientComponent = ( props ) => {
               <label>
                 {item.name} - {item.amount}$
               </label>
-              <FontAwesomeIcon
-                onClick={props.addToCart}
-                style={{
-                  float: "right",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                  padding: "0.5%"
-                }}
-                icon={faTrash}
-              />
             </li>
           </ul>
         );
       })
     ) : (
-      <h2 className="content-header">No Ingredients Added!</h2>
+      <h2 className="content-header">No Such Ingredient :(</h2>
     );
 }
 

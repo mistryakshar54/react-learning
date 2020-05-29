@@ -23,6 +23,36 @@
     {
         "name": "pepper",
         "key": "1004",
-        "amount" : 4
+        "amount" : 6
+    },
+    {
+        "name": "chia seeds",
+        "key": "1005",
+        "amount" : 12
+    },
+    {
+        "name": "almonds",
+        "key": "1006",
+        "amount" : 20
+    },
+    {
+        "name": "sage",
+        "key": "1007",
+        "amount" : 7
+    },
+    {
+        "name": "paprika",
+        "key": "1008",
+        "amount" : 6
+    },
+    {
+        "name": "kiwi",
+        "key": "1009",
+        "amount" : 10
+    },
+    {
+        "name": "blueberries",
+        "key": "1010",
+        "amount" : 3
     }
 ]
