@@ -1,3 +1,13 @@
+# Implementing react concepts using examples
+Link to the demo : https://react-concepts-1c81d.firebaseapp.com/
+
+## Includes examples for 
+  * Higher Order Components
+  * Hooks
+  * Render Props
+  * Context
+  * Wiring up with redux store
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
