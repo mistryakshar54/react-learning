@@ -3,6 +3,7 @@ import { RouteComponentProps, useHistory } from 'react-router-dom';
 import instance from "../../AxiosConfig/Config";
 import ListView from '../ListView/ListView';
 import Pagination from '../Pagination/Pagination';
+import { CircularProgress } from '@material-ui/core';
 
 export type NewsType = {
     comments_count: number
@@ -52,7 +53,7 @@ const News = ( { match } : RouteComponentProps ) => {
         fetchNews();
     }, [endPoint, pageNo]);
 
-    const LoadingContent = () => <h1>Loading ...</h1>;
+    const LoadingContent = () => <div style={ { display : 'flex', justifyContent : 'center', margin:'10%' } }><CircularProgress color="primary" /></div>;
     const ErrorContent = () => <h1>Error! {appError}</h1>;
 
     const handleNavigatePage = (direction : string) => {
