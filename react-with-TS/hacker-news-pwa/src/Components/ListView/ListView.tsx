@@ -1,9 +1,9 @@
 import React from 'react';
 import { NewsType } from '../News/News';
-import { Theme, createStyles } from "@material-ui/core/styles";
+import { createStyles } from "@material-ui/core/styles";
 import AppTheme from '../../theme';
-import { Paper, List, makeStyles, ListItem, Typography, Divider } from '@material-ui/core';
-import withStyles, { BaseCSSProperties, WithStyles } from '@material-ui/core/styles/withStyles';
+import { Paper, List, ListItem, Typography, Divider } from '@material-ui/core';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { PersonOutlined, Schedule } from "@material-ui/icons";
 
 const styles = ({ palette } = AppTheme) => createStyles({
@@ -25,7 +25,6 @@ const styles = ({ palette } = AppTheme) => createStyles({
     },
     listItemPoints: {
         color: palette.primary.main,
-        backgroundColor: palette.primary.main,
         fontSize: '1.7em',
     },
     listItemHeader: {

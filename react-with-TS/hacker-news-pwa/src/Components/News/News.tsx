@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import instance from "../../AxiosConfig/Config";
 import ListView from '../ListView/ListView';
+import Pagination from '../Pagination/Pagination';
 
 export type NewsType = {
     comments_count: number
@@ -66,9 +67,9 @@ const News = ( { match } : RouteComponentProps ) => {
                 appLoading ? <LoadingContent/> : 
                 appError ? <ErrorContent/> :
                 <div>
+                    <Pagination currentPage={parseInt(pageNo)} nextPage={handleNavigatePage} />
                     <ListView newsData={ appData } />
                 </div>
-                // <h1 onClick={() => handleNavigatePage('') }>Hello { appError } </h1>
             }
         </div>
     );
