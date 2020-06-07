@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import instance from "../../AxiosConfig/Config";
+import ListView from '../ListView/ListView';
 
-type NewsType = {
+export type NewsType = {
     comments_count: number
     domain: string
     id: number
@@ -15,30 +16,62 @@ type NewsType = {
     user: string
 }
 
+
 const News = ( { match } : RouteComponentProps ) => {
 
-    const [data, setData] = useState({ hits: [] });
-    const [,endPoint, pageNo] = match.url.split('/');
+    const [appData, setData] = useState<NewsType[]>([]);
+    const [appLoading, setLoading] = useState(false);
+    const [appError, setError] = useState('');
+   
+    let [,endPoint, pageNo] = match.url.split('/');
+    let history = useHistory();
+
     useEffect( () => {
+        setLoading(true);
         const fetchNews = async() => {
-            console.log("Pagenp" , pageNo, "endpt", endPoint);
             let url = parseInt(pageNo) > 0 ? endPoint + "?page=" + pageNo : endPoint;
-            console.log("THISurl", url);
             try {
-                const response = await instance.get('');
-                const respData : NewsType[] = response.data;
-                console.log("respData", respData);
+                let newsList: NewsType[] = [];
+                const newsResponse = await instance.get(url);
+                if (newsResponse?.data?.length){
+                    newsList = newsResponse.data;
+                }
+                setData(newsList);
             } catch (error) {
-                console.log("Error: ", error.response.status, error.message);
-                // respObj.status = error.status ? error.status : 500;
-                // respObj.data = [];
-                // respObj.message = getMessageForStatus(error.status)
-            }        
+                if(error?.message){
+                   const errorString = `${error?.response?.status} - ${error.message}`;
+                   setError(errorString);
+                }
+                else{
+                    setError('An error has occuerd!!');
+                }
+            }
+            setLoading(false);        
         }
         fetchNews();
     }, [endPoint, pageNo]);
 
-    return( <h1>Hello</h1> );
+    const LoadingContent = () => <h1>Loading ...</h1>;
+    const ErrorContent = () => <h1>Error! {appError}</h1>;
+
+    const handleNavigatePage = (direction : string) => {
+        let currPageNo = parseInt(pageNo); 
+        direction === 'previous' ? currPageNo-- : currPageNo++;
+        history.push(`/${endPoint}/${currPageNo}`);
+    }
+
+    return (
+        <div>
+            {
+                appLoading ? <LoadingContent/> : 
+                appError ? <ErrorContent/> :
+                <div>
+                    <ListView newsData={ appData } />
+                </div>
+                // <h1 onClick={() => handleNavigatePage('') }>Hello { appError } </h1>
+            }
+        </div>
+    );
 }
 
 export default News;
