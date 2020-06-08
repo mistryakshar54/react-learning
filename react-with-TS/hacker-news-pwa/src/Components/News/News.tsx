@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import instance from "../../AxiosConfig/Config";
-import ListView from '../ListView/ListView';
-import Pagination from '../Pagination/Pagination';
 import { CircularProgress } from '@material-ui/core';
+
+const ListView = lazy(() => import('../ListView/ListView'));
+const Pagination = lazy(() => import('../Pagination/Pagination'));
 
 export type NewsType = {
     comments_count: number
@@ -24,7 +25,9 @@ const News = ( { match } : RouteComponentProps ) => {
     const [appData, setData] = useState<NewsType[]>([]);
     const [appLoading, setLoading] = useState(false);
     const [appError, setError] = useState('');
-   
+    const messageStyles = {
+        display: 'flex', justifyContent : 'center', margin: '10%'
+    }
     let [,endPoint, pageNo] = match.url.split('/');
     let history = useHistory();
 
@@ -53,8 +56,8 @@ const News = ( { match } : RouteComponentProps ) => {
         fetchNews();
     }, [endPoint, pageNo]);
 
-    const LoadingContent = () => <div style={ { display : 'flex', justifyContent : 'center', margin:'10%' } }><CircularProgress color="primary" /></div>;
-    const ErrorContent = () => <h1>Error! {appError}</h1>;
+    const LoadingContent = () => <div style={messageStyles }><CircularProgress color="primary" /></div>;
+    const ErrorContent = () => <h1 style={messageStyles}>Error! {appError}</h1>;
 
     const handleNavigatePage = (direction : string) => {
         let currPageNo = parseInt(pageNo); 
