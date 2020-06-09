@@ -6,7 +6,7 @@ import { Paper, List, ListItem, Typography, Divider } from '@material-ui/core';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { PersonOutlined, Schedule } from "@material-ui/icons";
 
-const styles = ({ palette } = AppTheme) => createStyles({
+export const styles = ({ palette } = AppTheme) => createStyles({
     root: {
         width: "100%",
         backgroundColor: palette.background.paper
@@ -42,18 +42,18 @@ const styles = ({ palette } = AppTheme) => createStyles({
     }
 });
 
-interface Props extends WithStyles<typeof styles> {
+export interface ListViewProps extends WithStyles<typeof styles> {
     newsData: NewsType[],
 }
-const ListView = ({ newsData, classes }: Props ) => {
+const ListView = ({ newsData, classes }: ListViewProps ) => {
     return (
         <Paper style={{ marginTop: "1%" }} elevation={3}>
             <List component="nav" className={classes.root} aria-label="mailbox folders">
-                {(newsData?.length <= 0) ? <h1>No Data!!</h1>:
+                {(newsData?.length <= 0) ? <h1 id="emptyListHeader">No Data!!</h1>:
                     newsData.map((listItem : NewsType, index : number) => {
                         return (
                             <div key={`news-item-${index}`}>
-                                <ListItem alignItems="flex-start">
+                                <ListItem className="list-item" alignItems="flex-start">
                                     <div className={classes.listItemAvatar}>
                                         <div className={classes.listItemPoints}>
                                             {listItem.points}
