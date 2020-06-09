@@ -4,16 +4,16 @@ import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
-type PaginationProps = {
+export type PaginationProps = {
     currentPage : number,
     nextPage : (direction : string) =>void
 }
 const Pagination = ({ currentPage, nextPage }: PaginationProps) => {
     const totalPages = 17;
     return (
-        <Paper style={{ marginTop: "5%" }} elevation={3}>
+        <Paper id="paginationLayout" style={{ marginTop: "5%" }} elevation={3}>
             <div>
-                <IconButton
+                <IconButton id="previIcon"
                     onClick={() => {
                         nextPage("previous");
                     }}
@@ -23,7 +23,7 @@ const Pagination = ({ currentPage, nextPage }: PaginationProps) => {
                     <KeyboardArrowLeft />{" "}
                 </IconButton>
                 {currentPage} / {totalPages}
-                <IconButton
+                <IconButton id="nextIcon"
                     onClick={() => {
                         nextPage("next");
                     }}
