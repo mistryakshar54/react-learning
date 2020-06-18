@@ -1,5 +1,6 @@
 import React , { useState , useEffect } from 'react';
 import fetchData from '../utls/utils';
+import PostBtn from '../Button/Button';
 const PostComponent = () => {
    const [currentPost, setPost] = useState(null);
    const [isLoading, setLoading] = useState(true);
@@ -10,10 +11,13 @@ const PostComponent = () => {
      setLoading(true);
      const loadData = async () => {
        const result = await fetchData(postNo);
-       if (result.status === 200) {
-         setPost(result.data);
-       } else {
-         setError(result.message);
+       setPost(result.data);
+       if (result) {
+         if (result.status === 200) {
+           setPost(result.data);
+         } else {
+           setError(result.message);
+         }
        }
        setLoading(false);
      };
@@ -26,15 +30,23 @@ const PostComponent = () => {
      <h1 data-testid="error">{errorMsg}</h1>
    ) : (
      <div>
-       <h1 data-testid="resolved">{currentPost.title}</h1>
-       <button
-         id="#nextIcon"
-         onClick={() => {
+       <h1 data-testid="currentPost">{currentPost.title}</h1>
+       <PostBtn
+         label="Previous"
+         testId="prevBtn"
+         id="#prevBtn"
+         clickHandler={() => {
+           setPostNumber(postNo - 1);
+         }}
+       />
+       <PostBtn
+         label="Next"
+         testId="nextBtn"
+         id="#nextBtn"
+         clickHandler={() => {
            setPostNumber(postNo + 1);
          }}
-       >
-         Next
-       </button>
+       />
      </div>
    );
 };
