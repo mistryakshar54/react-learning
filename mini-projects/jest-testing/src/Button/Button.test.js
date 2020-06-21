@@ -4,19 +4,28 @@ import PostBtn from "./Button";
 
 afterEach(cleanup);
 
-it("fetches and displays data", async () => {
-  const btnClick = jest.fn();
-    const props = {
-      label: "abc",
-      testId: "def",
-      clickHandler: btnClick,
-    };
-  let renderedComp ;
+const props = {
+  label: "abc",
+  testId: "def",
+  clickHandler: () =>{},
+};
+
+test("fetches and displays data", async () => {
+  const btnClickFn = jest.fn();
+  let btnProps = { ...props , clickHandler : btnClickFn };
+  let renderedComp = render(<PostBtn {...btnProps} />);
+  const buttonComp = await waitForElement(() => renderedComp.findByTestId('def'));
   act(() => {
-    renderedComp = render(<PostBtn {...props} />);
-    // fireEvent.click( renderedComp.findByTestId('def') );
+    fireEvent.click(buttonComp);
   });
-  console.log(renderedComp.debug());
-  console.log(renderedComp.findByTestId('def'));
-//   expect(btnClick).toHaveBeenCalled();
+  expect(btnClickFn).toHaveBeenCalledTimes(1);
+  expect(buttonComp).toHaveTextContent("abc");
+});
+
+test("Disables the button when isDisabled is set to true", async () => {
+  const btnClickFn = jest.fn();
+  let btnProps = { ...props, isDisabled : true ,clickHandler: btnClickFn };
+  let renderedComp = render(<PostBtn {...btnProps} />);
+  const buttonComp = await waitForElement(() => renderedComp.findByTestId('def'));
+  expect(buttonComp).toBeDisabled();
 });
