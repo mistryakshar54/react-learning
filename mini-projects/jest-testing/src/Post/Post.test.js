@@ -6,12 +6,12 @@ jest.mock("../utls/utils"); // this happens automatically with automocking
 
 afterEach(cleanup);
 
-it("fetches and displays data", async () => {
-  let mockResp = {
-    data: { userId: 1, id: 1, title: "sample title" },
-    message: "",
-    status: 200,
-  };
+let mockResp = {
+  data: { userId: 1, id: 1, title: "sample title" },
+  message: "",
+  status: 200,
+};
+test("Renders component", async () => {
   fetchData.mockResolvedValueOnce(mockResp);
   const { getByTestId } = render(<PostComponent />);
   expect(getByTestId("loading")).toHaveTextContent("Loading");
@@ -22,12 +22,7 @@ it("fetches and displays data", async () => {
   expect(fetchData).toHaveBeenCalledWith(1);
 });
 
-it("Renders next post on clicking next button ", async () => {
-  let mockResp = {
-    data: { userId: 1, id: 1, title: "sample title" },
-    message: "",
-    status: 200,
-  };
+test("Renders next post on clicking next button ", async () => {
   let nextMockResp = { ...mockResp, data: { ...mockResp.data, title: "next title" } };
 
   fetchData
@@ -48,12 +43,7 @@ it("Renders next post on clicking next button ", async () => {
   expect(currentPost).toHaveTextContent("next title");
 });
 
-it("Renders previous post on clicking previous button ", async () => {
-  let mockResp = {
-    data: { userId: 1, id: 1, title: "sample title" },
-    message: "",
-    status: 200,
-  };
+test("Renders previous post on clicking previous button ", async () => {
   let prevMockResp = { ...mockResp, data: { ...mockResp.data, title: "prev title" } };
 
   fetchData
@@ -61,8 +51,10 @@ it("Renders previous post on clicking previous button ", async () => {
     .mockResolvedValueOnce(prevMockResp);
 
   let renderedComp;
-  renderedComp = render(<PostComponent />);
-  const prevBtn = await waitForElement(() =>renderedComp.getByTestId("prevBtn"));
+  await act( async() => {
+    renderedComp = render(<PostComponent />);
+  })
+  const prevBtn = renderedComp.getByTestId("prevBtn");
   
   act(() => {
     fireEvent.click(prevBtn);
@@ -73,15 +65,14 @@ it("Renders previous post on clicking previous button ", async () => {
   expect(currentPost).toHaveTextContent("prev title");
 });
 
-it("Renders error span if fetch data throws error", async () => {
-  let mockResp = {
-    data: { userId: 1, id: 1, title: "sample title" },
+test("Renders error span if fetch data throws error", async () => {
+  let errorResp = {
+    ...mockResp,
     message: "sample error",
     status: 500,
   };
 
-  fetchData
-    .mockResolvedValueOnce(mockResp);
+  fetchData.mockResolvedValueOnce(errorResp);
 
   let renderedComp;
   renderedComp = render(<PostComponent />);

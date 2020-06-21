@@ -31,18 +31,21 @@ const PostComponent = () => {
    ) : (
      <div>
        <h1 data-testid="currentPost">{currentPost.title}</h1>
+       <h4 className="postBody" data-testid="currentPostBody">{currentPost.body}</h4>
        <PostBtn
-         label="Previous"
+         label="<"
          testId="prevBtn"
          id="#prevBtn"
+         isDisabled={postNo <= 1}
          clickHandler={() => {
            setPostNumber(postNo - 1);
          }}
        />
        <PostBtn
-         label="Next"
+         label=">"
          testId="nextBtn"
          id="#nextBtn"
+         isDisabled={postNo > 10}
          clickHandler={() => {
            setPostNumber(postNo + 1);
          }}
