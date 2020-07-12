@@ -1,0 +1,8 @@
+.control-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.canvas-items{
+    display: flex;
+}
