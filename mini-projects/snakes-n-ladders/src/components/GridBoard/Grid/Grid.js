@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const GridComponent = (props) => {
   const { canvasRef, gridMap, renderCanvas } = props;

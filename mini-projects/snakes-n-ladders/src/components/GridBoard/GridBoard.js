@@ -101,13 +101,21 @@ const GridBoard = () => {
       setPlayers([...playerArr]);
       
     };
-
+    const resetPlayers = () => {
+      const playerArr = players.map((item, index) => {
+          item.x = gridMap[0].x + (index * 10);
+          item.y = gridMap[0].y + index * 10;
+          item.cellNo = gridMap[0].cellNo;
+        return item;
+      });
+      setCurrentPlayer(1);
+      setPlayers([...playerArr]);
+    }
     const resetGame = () => {
         clearCanvas();
-        movePlayer(gridMap[0]);
+        resetPlayers();
         loadCanvas();
         setDiceValue(0);
-        setCurrentPlayer(1);
         setGameMsg("Click on Roll Dice to start playing");
     };
     return (
