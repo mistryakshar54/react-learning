@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-const SnakesAndLadderComponent = ({ canvasRef, gridMap, type, arr }) => {
-  const canvasLayout = canvasRef.current;
-  const context = canvasLayout.getContext("2d");
+const SnakesAndLadderComponent = ({ canvasRef, gridMap, renderCanvas, type, arr }) => {
 
+  const canvasLayout = canvasRef?.current;
+  const context = canvasLayout?.getContext("2d");
   const drawSnakeOrLadder = (startPos, endPos, color, isSnake = false) => {
     context.beginPath();
     context.moveTo(startPos.x + 10, startPos.y + 20);
@@ -32,7 +32,7 @@ const SnakesAndLadderComponent = ({ canvasRef, gridMap, type, arr }) => {
     }
   };
 
-  return <>{renderSnakeAndLadder()}</>;
+  return <>{renderCanvas && renderSnakeAndLadder()}</>;
 };
 
 export default SnakesAndLadderComponent;

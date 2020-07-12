@@ -1,4 +1,4 @@
-export const snakes = [
+export const snakes = [ //Snakes take from higher cell no to lower cell no
   {
     startCell: 23,
     endCell: 5,
@@ -17,7 +17,7 @@ export const snakes = [
   },
 ];
 
-export const ladders = [
+export const ladders = [//Ladder take from lower cell no to higher cell no
   {
     startCell: 6,
     endCell: 38,
@@ -32,7 +32,7 @@ export const ladders = [
   },
 ];
 
-export const geenrateGridData = (rows, cols, side) => {
+export const generateGridData = (rows, cols, side) => {
   const gridMap = Array(rows * cols).fill(0);
   let x = 0;
   let y = 0;
@@ -87,7 +87,6 @@ export const geenrateGridData = (rows, cols, side) => {
     goTo: { ...endPos },
     };
   }
-  console.log(gridMap)
   return gridMap;
 };
 

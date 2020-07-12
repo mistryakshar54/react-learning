@@ -9,7 +9,7 @@ const PlayerComponent = (props) => {
         const { x, y } = currPlayer;
         context.beginPath();
         context.arc(x + 20, y + 20, 10, 0, 2 * Math.PI, false);
-        context.fillStyle = "yellow";
+        context.fillStyle = currPlayer.color;
         context.fill();
         context.lineWidth = 2;
         context.strokeStyle = "black";

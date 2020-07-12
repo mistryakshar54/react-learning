@@ -24,7 +24,6 @@ const GridComponent = (props) => {
       drawRect(x, y, 50, 50, "red", cellNo);
     });
   };
-  console.log("Came for render", renderCanvas)
   return <>{renderCanvas && renderGrid()}</>;
 };
 
