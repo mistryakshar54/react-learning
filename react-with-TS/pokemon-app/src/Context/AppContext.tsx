@@ -4,12 +4,20 @@ import PokemonReducer from './Reducer';
 import { AppState, AppContextValue } from './AppTypes';
 
 const initialState : AppState = {
-    pokemons: [{
+    pokemons: [
+      {
         moves: [],
         sprites: [],
         type: [],
         name: "Pikachu"
-    }],
+      },
+      {
+        moves: [],
+        sprites: [],
+        type: [],
+        name: "Pichu"
+      }
+    ],
     loading : false,
     message: ""
 }
