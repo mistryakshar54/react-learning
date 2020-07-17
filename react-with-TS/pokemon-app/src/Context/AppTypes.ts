@@ -15,12 +15,12 @@ export type ImageSprites = {
 
 export type PokemonActions = {
   type: ActionType;
-  payload: Pokemon[] | null;
+  payload: Pokemon[];
 };
 
 export type Pokemon = {
   moves: string[];
-  sprites: ImageSprites[];
+  sprites: ImageSprites;
   type: string[];
   name: string;
 }
@@ -33,5 +33,24 @@ export type AppState = {
 
 export type AppContextValue = {
   appState: AppState;
-  dispatch: Dispatch<PokemonActions> | null;
+  dispatch: Dispatch<PokemonActions>;
+}
+
+export type AxiosResponseType = {
+  data : {
+    name : string,
+    types : [{
+      type : {
+        name : string
+      }
+    }],
+    moves : [{
+      move : {
+        name : string
+      }
+    }],
+    sprites : ImageSprites,
+
+  },
+  status : number
 }

@@ -1,28 +1,39 @@
 import instance from "../AxiosConfig/Config";
-import {ActionType, Pokemon, PokemonActions, MAX_FETCH_LIMIT} from './AppTypes';
-export const fetchPokemonData = async( query :string) => {
-    // const responseData : Pokemon[];
+import {ActionType, Pokemon, PokemonActions, MAX_FETCH_LIMIT, AxiosResponseType} from './AppTypes';
+export const fetchPokemonData = async( query :string) : Promise<Pokemon[]> => {
+    const promisesArr: AxiosResponseType[] = [];
     if( query === 'all' ){
-        console.log("An all promise!!");
         let limit = 1;
-        const promiseArr = [];
         while (limit <= MAX_FETCH_LIMIT) {
-            promiseArr.push(await instance.get(`${limit}`));
+            const fetchResponse : AxiosResponseType = await instance.get(`${limit}`)
+            promisesArr.push(fetchResponse);
             limit++;
         }
-        console.log(promiseArr);
     }
-    // else{
-
-    // }
-    // const pokemonResponse = await instance.get(pokemon);
-    // console.log("pokemonResponse => ", pokemonResponse?.data);
-    // return pokemonResponse?.data
+    else{
+        const fetchResponse : AxiosResponseType = await instance.get(`${query}`)
+        promisesArr.push(fetchResponse);      
+    }
+    const pokemonArr : Pokemon[] = promisesArr.map( (promiseResp: AxiosResponseType) => {
+        const {data}  = promiseResp;
+        const moves = data.moves.slice(0,10).map( item => item.move.name );
+        const type = data.types.map( item => item.type.name)
+        
+        const pokemon : Pokemon = {
+             name : data.name,
+             moves,
+             type,
+             sprites : data.sprites
+        }
+        return pokemon;
+    });
+    console.log("pokemonArr", pokemonArr);
+    return pokemonArr;
 }
 
 export const loadInitialData  = ( payload: Pokemon[] ) : PokemonActions => {
     return {
-        type : ActionType.FETCH_DETAILS,
+        type : ActionType.LOAD_DATA,
         payload 
     }
 }
