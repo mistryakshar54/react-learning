@@ -1,9 +1,11 @@
-import { AppState, PokemonActions } from "./AppTypes";
+import { ActionType, AppState, PokemonActions } from "./AppTypes";
 
 
 export default(state: AppState, action: PokemonActions) => {
     switch (action.type) {
-        // case 
+        case ActionType.LOAD_DATA : {
+            return { ...state, pokemons: [...action.payload] };
+        }
         default: return state;
     }
 };
