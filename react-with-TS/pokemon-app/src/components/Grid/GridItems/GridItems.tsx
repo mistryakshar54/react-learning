@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { Suspense, useContext } from 'react';
+import { AppContext } from '../../../Context/AppContext';
 import { Pokemon } from '../../../Context/AppTypes';
 
-type GridItemProps = {
-    pokemons : Pokemon[]
-}
-
-const GridItems = ( props : GridItemProps ) => {
+const GridItems = () => {
+    const { appState } = useContext(AppContext);
     const renderPokemon = () => {
-        const { pokemons } = props;
+        const { pokemons } = appState;
         return pokemons.map( (pokemon : Pokemon) => {
             return(
             <h1 key={pokemon.name}>{pokemon.name}</h1>
             );
         });
     }
-    return(<> { renderPokemon() } </>);
+    return(<Suspense fallback={ "Loading!!!" } > { renderPokemon() } </Suspense>);
 }
 
 export default GridItems;

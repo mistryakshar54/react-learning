@@ -3,22 +3,17 @@ import { AppContext } from "../../Context/AppContext";
 import { useContext } from "react";
 import GridItems from './GridItems/GridItems';
 import { useEffect } from 'react';
-import {fetchPokemonData} from '../../Context/Actions';
+import {fetchPokemonData, loadInitialData} from '../../Context/Actions';
 const Grid = () => {
-    const { appState, dispatch } = useContext(AppContext);
-    const { pokemons } = appState;
+    const { dispatch } = useContext(AppContext);
     useEffect(() => {
         const fetchData = async() =>{
-            const pokemons = await fetchPokemonData('all');
-            
+          const pokemons = await fetchPokemonData('all');
+          dispatch(loadInitialData(pokemons) );        
         }
         fetchData();
     },[]);
-    return (
-      <Suspense fallback={() => "Loading!!"}>
-        <GridItems pokemons={pokemons} />
-      </Suspense>
-    );
+    return (<GridItems />);
 
 }
 
