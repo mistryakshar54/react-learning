@@ -30,7 +30,8 @@ const initialState : AppState = {
     // }
   ],
     loading : false,
-    message: ""
+    message: "",
+    searchKeyword:""
 }
 const initialContextValue = {
     appState: initialState,

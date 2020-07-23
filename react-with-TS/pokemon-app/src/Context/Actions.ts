@@ -1,5 +1,6 @@
 import instance from "../AxiosConfig/Config";
 import {ActionType, Pokemon, PokemonActions, MAX_FETCH_LIMIT, AxiosResponseType} from './AppTypes';
+
 export const fetchPokemonData = async( query :string) : Promise<Pokemon[]> => {
     const promisesArr: AxiosResponseType[] = [];
     if( query === 'all' ){
@@ -33,7 +34,20 @@ export const fetchPokemonData = async( query :string) : Promise<Pokemon[]> => {
 
 export const loadInitialData  = ( payload: Pokemon[] ) : PokemonActions => {
     return {
-        type : ActionType.LOAD_DATA,
+        type : ActionType.SET_DATA,
         payload 
     }
+}
+export const setSearchString  = ( searchString : string ) : PokemonActions => {
+    return {
+      type: ActionType.SET_SEARCH_DATA,
+      payload: searchString,
+    };
+}
+
+export const addPokemon  = ( pokeMon : Pokemon[] ) : PokemonActions => {
+    return {
+      type: ActionType.ADD_POKEMON,
+      payload: pokeMon,
+    };
 }

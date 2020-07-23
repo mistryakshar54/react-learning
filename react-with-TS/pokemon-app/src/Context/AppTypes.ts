@@ -3,9 +3,9 @@ import { Dispatch } from "react";
 export const MAX_FETCH_LIMIT = 10;
 
 export enum ActionType {
-  LOAD_DATA,
-  SEARCH_POKEMON,
-  FETCH_DETAILS
+  SET_DATA,
+  SET_SEARCH_DATA,
+  ADD_POKEMON,
 }
 
 export type ImageSprites = {
@@ -15,7 +15,7 @@ export type ImageSprites = {
 
 export type PokemonActions = {
   type: ActionType;
-  payload: Pokemon[];
+  payload: Pokemon[] | string;
 };
 
 export type Pokemon = {
@@ -29,6 +29,7 @@ export type AppState = {
   pokemons: Pokemon[];
   loading: boolean;
   message: string;
+  searchKeyword : string;
 };
 
 export type AppContextValue = {
