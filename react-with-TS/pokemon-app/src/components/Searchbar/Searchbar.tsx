@@ -1,15 +1,37 @@
-import React , { useState } from "react";
-
+import React , { useContext, useState } from "react";
+import { addPokemon, fetchPokemonData, setSearchString } from "../../Context/Actions";
+import { AppContext } from "../../Context/AppContext";
+import debounce from 'lodash/debounce';
 const SearchBar = () => {
-    const [ searchKey, setSearchKey ] = useState('');
-    const handleSearch = ( searchValue ) => {
+    const { dispatch, appState } = useContext(AppContext);
+    
+    const [ searchKey, setSearchKey ] = useState("");
+    
+    const debounceSearch = debounce((searchValue) => {
+      searchResponse(searchValue);
+    }, 2500);
+    const searchResponse = async (searchValue) => {
+    //   const { pokemons } = appState;
+      console.log("Got search Key as ", searchKey);
+      //   if (!pokemons.some((pokemon) => pokemon.name === searchKey)) {
+      //     const pokemonArr = await fetchPokemonData(searchKey);
+      //     console.log("Searched Pokemon", pokemonArr);
+      //     if (pokemonArr.length > 0) {
+      //       dispatch(addPokemon(pokemonArr));
+      //     }
+      //   }
+    };
+    const handleSearch = async( searchValue ) => {
+        
         if (searchValue === ""){
-            console.log("Searched for nothing!!");
             setSearchKey("");
         }else{
-            console.log("Searched for ", searchValue);
+            //searchValue = 'pikachu';
+            debounceSearch(searchValue);
             setSearchKey( searchValue );
+            
         }
+        dispatch(setSearchString(searchValue));
     }
     return (
     <div>
