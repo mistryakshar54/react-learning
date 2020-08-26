@@ -1,5 +1,3 @@
-const { ExitStatus } = require("typescript");
-
 const reducerAction = (type , payload = {}) => {
     return {
       type,
@@ -19,9 +17,13 @@ export const setLoadedThunk = (message = "") => {
   };
 };
 
-export const searchLocationThunk = () => {
+export const searchLocationThunk = (searchString) => {
    return async( dispatch ) => {
      //Set Loader
+     dispatch(setLoadingThunk());
+     dispatch(reducerAction("FILTER_LOCATION", searchString));
+     dispatch(setLoadedThunk());
+     //console.log(getState);
      //Search for the location from the available list
      //End Loader
      //return the list of available / searched locations
@@ -36,6 +38,6 @@ export const loadWeatherInformationThunk = () => {
       // dispatch request to set the data
       // dispatch selected city ? Store it in the state?
       // dispatch stop loading
-    dispatch(reducerAction("SET_LOADING", message));
+    // dispatch(reducerAction("SET_LOADING", ""));
   };
 };

@@ -1,26 +1,89 @@
 const initialState = {
-    app : {
-        isLoading : false,
-        message : ""
+  core: {
+    isLoading: false,
+    message: "",
+  },
+  cities: [
+    {
+      id: 5128638,
+      name: "New York",
+      state: "NY",
+      country: "US",
+      coord: {
+        lon: -75.499901,
+        lat: 43.000351,
+      },
     },
-    cities : [],
-    selectedCity : {},
-    weather : {}
-}
+    {
+      id: 2643743,
+      name: "London",
+      state: "",
+      country: "GB",
+      coord: {
+        lon: -0.12574,
+        lat: 51.50853,
+      },
+    },
+    {
+      id: 4119617,
+      name: "London",
+      state: "AR",
+      country: "US",
+      coord: {
+        lon: -93.25296,
+        lat: 35.328972,
+      },
+    },
+    {
+      id: 4298960,
+      name: "London",
+      state: "KY",
+      country: "US",
+      coord: {
+        lon: -84.08326,
+        lat: 37.128979,
+      },
+    },
+    {
+      id: 4517009,
+      name: "London",
+      state: "OH",
+      country: "US",
+      coord: {
+        lon: -83.44825,
+        lat: 39.886452,
+      },
+    },
+  ],
+  filteredCities: [],
+  selectedCity: {},
+  weather: {},
+};
 const coreReducer = ( state = initialState , action ) => {
     switch (action.type) {
+        case "FILTER_LOCATION": {
+            let filteredCities = [];
+            if( action.payload !== "" ){
+                filteredCities = state.cities.filter( city => city.name.includes(action.payload) );
+            }
+            return { ...state , filteredCities }
+        }
         case "SELECT_LOCATION": {
             return { ...state , selectedCity : action.payload }
         }
         case "SET_LOADING": {
-            return { ...state , app : { ...app , isLoading : true , message : "" } }
+            const core = {
+              isLoading: true,
+              message: "",
+            };
+            return { ...state, core };
         }
         case "SET_LOADED": {
-            const app = {
-                isLoading : false,
-                message :  (action.payload) ? action.payload :  ""
-            }
-            return { ...state , app  }
+            const core = {
+              isLoading: false,
+              message: action.payload ? action.payload : "",
+            };
+            return { ...state, core };
         }
         case "SET_WEATHER": {
             return { ...state, weather: action.payload };
