@@ -1,9 +1,10 @@
 import React from 'react';
 import TempChart from '../charts/TempChart';
+import SearchBarComponent from '../searchbar/searchBar';
 const Layout = () => {
     return (
         <div>
-            <h1>Searchbox Comes Here</h1>
+            <SearchBarComponent/>
             <h1>Graphs Come here</h1>
             <TempChart/>
         </div>

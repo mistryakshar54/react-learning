@@ -1,0 +1,19 @@
+.autoSuggestBox{
+    list-style: none;
+    position: absolute;
+    padding: 1% 5%;
+    box-shadow: 0px 8px 7px 4px #e8e8e8;
+    background-color: white;
+    z-index: 10;
+}
+
+.autoSuggestBoxItem{
+    margin:1%;
+}
+
+.autoSuggestDiv{
+    position: relative;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
