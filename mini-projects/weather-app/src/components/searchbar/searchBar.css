@@ -1,14 +1,20 @@
 .autoSuggestBox{
     list-style: none;
     position: absolute;
-    padding: 1% 5%;
+    padding: 0;
     box-shadow: 0px 8px 7px 4px #e8e8e8;
     background-color: white;
     z-index: 10;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
 }
 
 .autoSuggestBoxItem{
     margin:1%;
+}
+.autoSuggestBoxItem:hover{
+    background-color: #efefef;
 }
 
 .autoSuggestDiv{
@@ -16,4 +22,8 @@
     display: flex;
     text-align: center;
     justify-content: center;
+}
+
+.searchBarInput{
+    width: 100%;
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, shallowEqual, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as actionCreators from '../../store/CoreActionCreator';
 import { createSelector } from "reselect";
 import './searchBar.css';
@@ -13,28 +13,42 @@ const SearchBarComponent = () => {
     const dispatch = useDispatch();
     const [ searchKey , setSearchKey ] = useState('');
     const filteredCities = useSelector(stateSelector);
-    useEffect(() => {
+    const [autoSuggestDiv, toggleAutoSuggestDiv] = useState(false);
+    
+    const handleCityClick = (city) => {
+      toggleAutoSuggestDiv(false);
+      dispatch(actionCreators.loadWeatherInformationThunk(city))
+    };
+    
+    const handleLocSearch = (searchVal) => {
+      if( !autoSuggestDiv ){toggleAutoSuggestDiv(true);}
+      setSearchKey(searchVal);
       dispatch(actionCreators.searchLocationThunk(searchKey));
-    }, [dispatch, searchKey]);
+    };
 
     return (
       <div className="searchBar">
         <input
           type="text"
+          className="searchBarInput"
           value={searchKey}
-          onChange={(e) => setSearchKey(e.target.value)}
+          onChange={(e) => handleLocSearch(e.target.value)}
         />
-        {filteredCities.length > 0 &&
-        <div className="autoSuggestDiv">
-          <ul className="autoSuggestBox">
-            {filteredCities.map((city) => (
-              <li className="autoSuggestBoxItem" key={city.id}>
-                {`${city.name} , ${city.state}, ${city.country}`}
-              </li>
-            ))}
-          </ul>
-        </div>
-        }
+        {autoSuggestDiv && (
+          <div className="autoSuggestDiv">
+            <ul className="autoSuggestBox">
+              {filteredCities.map((city) => (
+                <li
+                  onClick={() => handleCityClick(city)}
+                  className="autoSuggestBoxItem"
+                  key={city.id}
+                >
+                  {`${city.name} , ${city.state}, ${city.country}`}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
 }
