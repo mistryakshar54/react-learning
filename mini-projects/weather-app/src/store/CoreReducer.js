@@ -62,11 +62,7 @@ const initialState = {
 const coreReducer = ( state = initialState , action ) => {
     switch (action.type) {
         case "FILTER_LOCATION": {
-            let filteredCities = [];
-            if( action.payload !== "" ){
-                filteredCities = state.cities.filter( city => city.name.includes(action.payload) );
-            }
-            return { ...state , filteredCities }
+            return { ...state , filteredCities : action.payload }
         }
         case "SELECT_LOCATION": {
             return { ...state , selectedCity : action.payload }
