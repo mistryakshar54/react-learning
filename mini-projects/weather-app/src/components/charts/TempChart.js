@@ -63,7 +63,7 @@ const TempChart  = ( props ) => {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" height={60} tick={<CustomizedAxisTick />} />
-            <YAxis />
+            <YAxis type="number" domain={[0, 50]} />
             <Tooltip />
             <Legend />
             <Line

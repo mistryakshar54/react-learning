@@ -48,6 +48,7 @@ export const loadWeatherInformationThunk = (city) => {
     console.log("Fetch details for ", city);
     const weatherData = {
       city,
+      timeZoneOffset : rawData.timezone_offset,
       date: getDate(rawData.current.dt, rawData.timezone_offset),
       sunrise: getTime(rawData.current.sunrise, rawData.timezone_offset),
       sunset: getTime(rawData.current.sunset, rawData.timezone_offset),
@@ -68,7 +69,7 @@ export const loadWeatherInformationThunk = (city) => {
           };
         }),
     };
-    dispatch(reducerAction("SELECT_LOCATION", city));
+    dispatch(reducerAction("SELECT_LOCATION", {...city , timeZoneOffset : rawData.timezone_offset}));
     dispatch(reducerAction("SET_WEATHER" , weatherData));
     console.log(weatherData);
   };
@@ -81,7 +82,12 @@ const getDate = ( timeStamp , offset ) => {
 
 const getTime = (timeStamp, offset) => {
   let d = new Date((timeStamp + offset) * 1000);
-  return d.toUTCString().substr(17, 5);
+  let hrs = d.getUTCHours();
+  let type = hrs > 12 ? "PM" : "AM";
+  if( hrs > 12 ){
+    hrs -= 12;
+  }
+   return `${hrs} ${type}`;
 };
 
 const getDegreeCelcius = (temp) => parseInt(temp - 273.15);
