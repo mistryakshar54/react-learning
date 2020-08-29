@@ -1,7 +1,7 @@
 .autoSuggestBox{
     list-style: none;
     position: absolute;
-    padding: 0;
+    padding: 2%;
     box-shadow: 0px 8px 7px 4px #e8e8e8;
     background-color: white;
     z-index: 10;
@@ -11,7 +11,10 @@
 }
 
 .autoSuggestBoxItem{
-    margin:1%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
 }
 .autoSuggestBoxItem:hover{
     background-color: #efefef;

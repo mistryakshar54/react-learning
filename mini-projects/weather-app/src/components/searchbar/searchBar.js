@@ -22,6 +22,7 @@ const SearchBarComponent = () => {
     
     const handleLocSearch = (searchVal) => {
       if( !autoSuggestDiv ){toggleAutoSuggestDiv(true);}
+      if( searchVal === "" ){toggleAutoSuggestDiv(false);}
       setSearchKey(searchVal);
       dispatch(actionCreators.searchLocationThunk(searchKey));
     };
@@ -30,7 +31,7 @@ const SearchBarComponent = () => {
       <div className="searchBar">
         <input
           type="text"
-          className="searchBarInput"
+          className="searchBarInput form-control"
           value={searchKey}
           onChange={(e) => handleLocSearch(e.target.value)}
         />
@@ -43,7 +44,8 @@ const SearchBarComponent = () => {
                   className="autoSuggestBoxItem"
                   key={city.id}
                 >
-                  {`${city.name} , ${city.state}, ${city.country}`}
+                  <label>{`${city.name}, ${city.sys.country}`}</label>
+                  <label>{`${parseInt(city.main.temp - 273.15)}°C`}</label>
                 </li>
               ))}
             </ul>
