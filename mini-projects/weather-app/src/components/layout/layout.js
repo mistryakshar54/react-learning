@@ -3,7 +3,7 @@ import TempChart from '../charts/TempChart';
 import SearchBarComponent from '../searchbar/searchBar';
 const Layout = () => {
     return (
-        <div>
+        <div className="content">
             <SearchBarComponent/>
             <h1>Graphs Come here</h1>
             <TempChart/>
