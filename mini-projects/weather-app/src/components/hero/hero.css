@@ -2,3 +2,22 @@
     margin : 0;
     min-height: 40vh;
 }
+
+.sun{
+    position: absolute;
+    font-size: 10em;
+    color: yellow;
+    right: 30px;
+}
+
+.obj-enter{
+  opacity: 0;
+  transform: translateY(0px); 
+  transition: transform 300ms;
+}
+
+.obj-enter-done{
+  opacity: 1;
+  transform: translateY(10px); 
+  transition: transform 300ms;
+}
