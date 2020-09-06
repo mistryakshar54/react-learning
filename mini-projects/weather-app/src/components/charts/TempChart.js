@@ -72,7 +72,6 @@ const TempChart  = ( props ) => {
               stroke="#8884d8"
               label={<CustomizedLabel />}
             />
-            {/* <Line type="monotone" dataKey="feelsLike" stroke="#82ca9d" /> */}
           </LineChart>
         )}
       </div>

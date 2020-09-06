@@ -1,6 +1,5 @@
-import {rawData} from './rawdata';
 import axios from 'axios';
-
+import {API_KEY} from './keys';
 const dispatchGet = async (url) => {
   const resp = await axios.get( url );
   return{
@@ -45,33 +44,40 @@ export const searchLocationThunk = (searchString) => {
 
 export const loadWeatherInformationThunk = (city) => {
   return async (dispatch) => {
-    console.log("Fetch details for ", city);
-    const weatherData = {
-      city,
-      timeZoneOffset : rawData.timezone_offset,
-      date: getDate(rawData.current.dt, rawData.timezone_offset),
-      sunrise: getTime(rawData.current.sunrise, rawData.timezone_offset),
-      sunset: getTime(rawData.current.sunset, rawData.timezone_offset),
-      currentTemp: getDegreeCelcius(rawData.current.temp),
-      feelsLike: getDegreeCelcius(rawData.current.feels_like),
-      weather: rawData.current.weather,
-      hourly: rawData.hourly
-        .filter(
-          (hourData) =>
-            getDate(hourData.dt, rawData.timezone_offset) ===
-            getDate(rawData.current.dt, rawData.timezone_offset)
-        )
-        .map((hourData) => {
-          return {
-            date: getTime(hourData.dt, rawData.timezone_offset),
-            temp: getDegreeCelcius(hourData.temp),
-            feelsLike: getDegreeCelcius(hourData.feels_like),
-          };
-        }),
-    };
-    dispatch(reducerAction("SELECT_LOCATION", {...city , timeZoneOffset : rawData.timezone_offset}));
-    dispatch(reducerAction("SET_WEATHER" , weatherData));
-    console.log(weatherData);
+    dispatch(setLoadingThunk());
+    const { lat,lon } = city.coord;
+    const responseData = await dispatchGet(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&%20exclude=minutely,daily&appid=${API_KEY}`
+    );
+    if(responseData.status === 200){
+      const { data } = responseData;
+      const weatherData = {
+        city,
+        timeZoneOffset : data.timezone_offset,
+        date: getDate(data.current.dt, data.timezone_offset),
+        sunrise: getTime(data.current.sunrise, data.timezone_offset),
+        sunset: getTime(data.current.sunset, data.timezone_offset),
+        currentTemp: getDegreeCelcius(data.current.temp),
+        feelsLike: getDegreeCelcius(data.current.feels_like),
+        weather: data.current.weather,
+        hourly: data.hourly
+          .filter(
+            (hourData) =>
+              getDate(hourData.dt, data.timezone_offset) ===
+              getDate(data.current.dt, data.timezone_offset)
+          )
+          .map((hourData) => {
+            return {
+              date: getTime(hourData.dt, data.timezone_offset),
+              temp: getDegreeCelcius(hourData.temp),
+              feelsLike: getDegreeCelcius(hourData.feels_like),
+            };
+          }),
+      };
+      dispatch(reducerAction("SELECT_LOCATION", {...city , timeZoneOffset : data.timezone_offset}));
+      dispatch(reducerAction("SET_WEATHER" , weatherData));
+    }
+    dispatch(setLoadedThunk());
   };
 };
 
