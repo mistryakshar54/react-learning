@@ -45,7 +45,7 @@ import { CSSTransition } from "react-transition-group";
 // };
 // console.log("city", city);
 
-const HeroComponent = ( {city}) => {
+const HeroComponent = ( {city }) => {
     const [showObj, setShowObj] = useState(false);
     useEffect( () => {
         if(city.name){
@@ -57,7 +57,7 @@ const HeroComponent = ( {city}) => {
     const getHeroData = () => {
       if (!city.name) {
         return (
-          <div className="container">
+          <div className="col-12 weatherBlock defaultBg">
             <h1>Welcome to the weather app</h1>
             <p>
               Start searching for a city to show the current weather information
@@ -68,18 +68,20 @@ const HeroComponent = ( {city}) => {
       else{
           const {  name, dt, timeZoneOffset, main, weather } = city;
           const date = new Date((dt - timeZoneOffset) * 1000);
-          const mode = (date.getUTCHours() > 12) ? "faSun" : 'faMoon';
-          console.log("mode", mode, date.getUTCHours());
+          const mode = (date.getHours() > 18) ? "night" : 'day';
           return (
-            <div className="container">
-              {/* <button onClick={ () => setShowObj(true) }>Click</button> */}
+            <div className={`col-12 weatherBlock ${mode}`}>
               <CSSTransition
                 in={showObj}
                 timeout={500}
                 classNames="obj"
                 unmountOnExit
               >
-                <FontAwesomeIcon icon={faSun} className="sun" />
+                {mode === "day" ? (
+                  <FontAwesomeIcon icon={faSun} className="sun" />
+                ) : (
+                  <FontAwesomeIcon icon={faMoon} className="moon" />
+                )}
               </CSSTransition>
               <h1>
                 {name} | {parseInt(main.temp - 273.15)}°C
@@ -96,11 +98,7 @@ const HeroComponent = ( {city}) => {
           );
       }
     };
-    return (
-      <Jumbotron fluid>
-        {getHeroData()}
-      </Jumbotron>
-    );
+    return getHeroData();
 }
 
 const mapStateToProps = ( state ) => {

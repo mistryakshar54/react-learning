@@ -1,23 +1,52 @@
-.jumbotron{
-    margin : 0;
-    min-height: 40vh;
+.weatherBlock{
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  min-height: 40vh;
+  color: white;
+  font-size: 2em;
+  font-weight: 100;
+  justify-content: center;
 }
 
+.defaultBg {
+  background-color: #F44336;
+}
+.night{
+  background : linear-gradient(to bottom, #111936, #285A7B);
+}
+.day{
+  background : linear-gradient(to bottom, #BE4405, #F6C60C);
+}
 .sun{
     position: absolute;
-    font-size: 10em;
+    font-size: 5em;
     color: yellow;
-    right: 30px;
+    right: 100px;
+}
+
+.moon{
+    position: absolute;
+    font-size: 5em;
+    color: whitesmoke;
+    right: 100px;
 }
 
 .obj-enter{
   opacity: 0;
-  transform: translateY(0px); 
-  transition: transform 300ms;
+  transform: translateY(-50px); 
+  transition: transform 500ms;
 }
 
 .obj-enter-done{
   opacity: 1;
-  transform: translateY(10px); 
-  transition: transform 300ms;
+  transform: translateY(0px); 
+  transition: transform 500ms;
 }
+
+.obj-enter-exit{
+  opacity: 1;
+  transform: translateY(-50px); 
+  transition: transform 500ms;
+}
+
