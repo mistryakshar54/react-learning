@@ -24,6 +24,7 @@ const SearchBarComponent = () => {
       if( !autoSuggestDiv ){toggleAutoSuggestDiv(true);}
       if( searchVal === "" ){toggleAutoSuggestDiv(false);}
       setSearchKey(searchVal);
+      console.log("Cme", searchVal);
       dispatch(actionCreators.searchLocationThunk(searchKey));
     };
 
@@ -38,7 +39,7 @@ const SearchBarComponent = () => {
         {autoSuggestDiv && (
           <div className="autoSuggestDiv">
             <ul className="autoSuggestBox">
-              {filteredCities.map((city) => (
+              {filteredCities?.map((city) => (
                 <li
                   onClick={() => handleCityClick(city)}
                   className="autoSuggestBoxItem"
